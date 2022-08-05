@@ -249,11 +249,11 @@ matrizApis(BuildContext context, List<String> listaMenu) async {
   }
   if (listaApis.isNotEmpty) {
     final altura =
-        lista.length > 2 ? 180.0 * (lista.length / 2).round() : 180.0;
+        lista.length > 2 ? 205.0 * (lista.length / 2).round() : 200.0;
     return Container(
       // color: Colors.white12,
       padding: EdgeInsets.symmetric(horizontal: 5),
-      height: altura,
+      height: altura + 5,
       child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           //  childAspectRatio: 1.2,
@@ -645,23 +645,39 @@ Widget elementoApi2(BuildContext context, Application api) {
   final pref = Provider.of<Preferencias>(context, listen: false);
   double size = MediaQuery.of(context).size.width;
   return GestureDetector(
-    onTap: () {
-      if (api.packageName != "") {
-        api.openApp();
-      }
-    },
-    child: Container(
-      width: size / 2,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            // height: 145,
-            //width: 120,
-
-            child: Column(
+      onTap: () {
+        if (api.packageName != "") {
+          api.openApp();
+        }
+      },
+      child: Container(
+          //color: Colors.yellowAccent,
+          width: size / 2,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                // height: 145,
+                //width: 120,
+                GestureDetector(
+                    onTap: () {
+                      eliminarApiMP(
+                          context, 'MPD' + api.packageName, api.appName);
+                    },
+                    child: pref.modoConfig
+                        ? Container(
+                            // width: 20,
+                            //height: 2,
+                            child: Center(
+                              child: Icon(
+                                Icons.close,
+                                size: 30,
+                                color: Colors.red,
+                              ),
+                            ),
+                          )
+                        : Container()),
+
                 SizedBox(
                   height: 5,
                 ),
@@ -672,38 +688,20 @@ Widget elementoApi2(BuildContext context, Application api) {
                 SizedBox(
                   height: 2,
                 ),
+
                 Text(
                   api.appName,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: size <= 320 ? 15 : 20,
+                    color: Theme.of(context).primaryColor,
+                    // color: pref.paleta == '2' || pref.paleta == '5'
+                    //     ? Colors.black
+                    //     : Colors.white,
                   ),
-                ),
-              ],
-            ),
-          ),
-          GestureDetector(
-              onTap: () {
-                eliminarApiMP(context, 'MPD' + api.packageName, api.appName);
-              },
-              child: pref.modoConfig
-                  ? Container(
-                      // width: 20,
-                      height: 100,
-                      child: Center(
-                        child: Icon(
-                          Icons.close,
-                          size: 30,
-                          color: Colors.red,
-                        ),
-                      ),
-                    )
-                  : Container()),
-        ],
-      ),
-    ),
-  );
+                )
+              ])));
 }
 
 Future<dynamic> eliminarApiMP(

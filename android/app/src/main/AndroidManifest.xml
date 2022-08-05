@@ -34,8 +34,8 @@
                  <action android:name="android.intent.action.MAIN"/>
                  <category android:name="android.intent.category.LAUNCHER"/>
                  <!--   hace que la app sea launcher -->
-                 <!-- <category android:name="android.intent.category.HOME" />
-                 <category android:name="android.intent.category.DEFAULT" /> -->
+                  <category android:name="android.intent.category.HOME" />
+                 <category android:name="android.intent.category.DEFAULT" /> 
    
             </intent-filter>
            

@@ -178,6 +178,10 @@ class ElementoApi extends StatelessWidget {
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                // color: pref.paleta == '2' || pref.paleta == '5'
+                //     ? Colors.black
+                //     : Colors.white,
                 fontSize: 20,
               ),
             ),

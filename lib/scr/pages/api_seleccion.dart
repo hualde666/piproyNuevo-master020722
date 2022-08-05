@@ -7,6 +7,8 @@ import 'package:piproy/scr/providers/db_provider.dart';
 import 'package:piproy/scr/widgets/header_app.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/usuario_pref.dart';
+
 class ApiSeleccionPage extends StatelessWidget {
   final BuildContext context;
   ApiSeleccionPage({this.context, this.listaVieja});
@@ -55,7 +57,10 @@ class ApiSeleccionPage extends StatelessWidget {
             'Seleccion Apps para: ',
             Text(
               '$grupo',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(
+                fontSize: 30,
+                color: Theme.of(context).primaryColor,
+              ),
             ),
             40.0,
             true,
@@ -168,6 +173,7 @@ class _WidgetApiState extends State<WidgetApi> {
   @override
   Widget build(BuildContext context) {
     final selecionada = widget.listaNueva.contains(widget.api);
+    // final pref = Provider.of<Preferencias>(context, listen: false);
     Color color =
         selecionada ? Theme.of(context).backgroundColor : Colors.grey[700];
     return GestureDetector(
@@ -214,6 +220,9 @@ class _WidgetApiState extends State<WidgetApi> {
                 widget.api.appName,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                  // color: pref.paleta == '2' || pref.paleta == '5'
+                  //     ? Colors.black
+                  //     : Colors.white,
                   fontSize: 20,
                 ),
               ),
