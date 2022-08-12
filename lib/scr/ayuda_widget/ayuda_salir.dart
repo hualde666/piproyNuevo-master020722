@@ -38,6 +38,20 @@ class AyudaSalirPage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
+            AyudaParrafo(
+              texto:
+                  '     Debe entrar a la configración del teléfono y seleccionar que launcher quiere.',
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            AyudaParrafo(
+              texto:
+                  '     Pasos:  Configuración -> Pantalla Inicio -> Launcher por Defecto.',
+            ),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),

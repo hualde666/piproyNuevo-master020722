@@ -10,13 +10,13 @@ class BotonRojo extends StatelessWidget {
     // double height = MediaQuery.of(context).size.height;
     double ancho = 120;
     double alto = 120;
-    // double font = 20;
-    // double icon = 60;
+    double font = 20;
+    double icon = 60;
     if (width <= 320) {
-      ancho = 80;
-      alto = 80;
-      // font = 15;
-      // icon = 40;
+      ancho = 100;
+      alto = 100;
+      font = 15;
+      icon = 50;
     }
     final pref = Provider.of<Preferencias>(context);
     return Container(
@@ -24,14 +24,14 @@ class BotonRojo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.call, //Icons.health_and_safety_outlined,
-              size: 60, // icon,
+              size: icon, // icon,
               color: pref.paleta == '4'
                   ? Color.fromARGB(255, 255, 230, 7)
                   : Colors.white),
           Text(
             'S O S',
             style: TextStyle(
-                fontSize: 20, //font,
+                fontSize: font, //font,
                 fontWeight: FontWeight.bold,
                 color: pref.paleta == '4'
                     ? Color.fromARGB(255, 246, 242, 4)

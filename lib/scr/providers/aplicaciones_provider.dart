@@ -156,20 +156,6 @@ class AplicacionesProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // modificarContacto(String nombreviejo, String nombrenuevo) {
-  //   for (var i = 0; i < _contactgrupos.length; i++) {
-  //     String grupo = _contactgrupos[i];
-
-  //     if (categoryContact[grupo].contains(nombreviejo)) {
-  //       categoryContact[grupo].remove(nombreviejo);
-  //       categoryContact[grupo].add(nombrenuevo);
-  //       ordenerGrupoContacto(grupo);
-  //     }
-  //   }
-
-  //   notifyListeners();
-  // }
-
   ordenerGrupoContacto(String grupo) {
     if (categoryContact[grupo].isNotEmpty) {
       categoryContact[grupo].sort((a, b) {

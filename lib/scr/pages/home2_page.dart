@@ -45,8 +45,8 @@ class _Home2PageState extends State<Home2Page> {
     double altoConMenuHorizontal = 275;
     double altoSinMenuHorizontal = 200;
     if (width <= 320) {
-      altoSinMenuHorizontal = 186;
-      altoConMenuHorizontal = 265;
+      altoSinMenuHorizontal = 200;
+      altoConMenuHorizontal = 275;
     }
     // final lista = apiProvider.listaMenu;
     return SafeArea(
@@ -181,29 +181,6 @@ class FondoVitalfon extends StatelessWidget {
   }
 }
 
-encabezadoApp(BuildContext context) {
-  final pref = Provider.of<Preferencias>(context);
-  final menuHorizontal = pref.menuHorizontal;
-
-  return Container(
-    height: pref.menuHorizontal ? 276 : 200,
-    //   padding: EdgeInsets.only(left: 5, right: 5),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 4,
-        ),
-        BotonesEncabezado(),
-        SizedBox(
-          height: 5,
-        ),
-        menuHorizontal ? encabezadoIcon(context) : Text(''),
-      ],
-    ),
-  );
-}
-
 Iterable<Widget> listaGrupos(BuildContext context, List<String> listaMenu) {
   final List<String> lista = [];
   final List<Widget> listaGrupos = [];
@@ -233,34 +210,48 @@ Iterable<Widget> listaGrupos(BuildContext context, List<String> listaMenu) {
 
 matrizApis(BuildContext context, List<String> listaMenu) async {
   //******************************************************* */
-  //********************* una Api   MPB            */
+  //********************* una Api   MPD            */
   //final apiProvider = Provider.of<AplicacionesProvider>(context, listen: false);
   //final listaMenu = apiProvider.listaMenu;
   final List<String> lista = [];
-  final List<Widget> listaApis = [];
+  final List<Application> listaApis = [];
+  final List<Widget> listaApisWidget = [];
   lista.addAll(listaMenu.where((element) => element.contains('MPD')));
+
   for (var i = 0; i < lista.length; i++) {
     final Application api =
         await DeviceApps.getApp(lista[i].substring(3), true);
 
     if (api != null) {
-      listaApis.add(elementoApi2(context, api));
+      listaApis.add(api);
     }
   }
-  if (listaApis.isNotEmpty) {
-    final altura =
-        lista.length > 2 ? 205.0 * (lista.length / 2).round() : 200.0;
+  //**************************************************** */
+  /********** ORDENAR ALFABETICAMENTE LAS APPS ***********/
+
+  listaApis.sort((a, b) {
+    return a.appName.toLowerCase().compareTo(b.appName.toLowerCase());
+  });
+  //****  GENERO  WIDGET DE LAS APP */
+  for (var i = 0; i < listaApis.length; i++) {
+    listaApisWidget.add(elementoApi2(context, listaApis[i]));
+  }
+
+  if (listaApisWidget.isNotEmpty) {
+    final altura = listaApisWidget.length > 2
+        ? 180.0 * (listaApisWidget.length / 2).round()
+        : 180.0;
     return Container(
       // color: Colors.white12,
       padding: EdgeInsets.symmetric(horizontal: 5),
-      height: altura + 5,
+      height: altura,
       child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
           //  childAspectRatio: 1.2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
+          //mainAxisSpacing: 10,
+          //crossAxisSpacing: 10,
           crossAxisCount: 2,
-          children: listaApis),
+          children: listaApisWidget),
     );
   } else {
     return Container();
@@ -292,7 +283,7 @@ listaContactosLlamadas(BuildContext context, List<String> listaMenu) async {
 
 listaContactos(BuildContext context, List<String> listaMenu) async {
   //*********************************************************** */
-  /****************** un contacto MPC LLAMADAS  Y WHATSAPP*******/
+  /****************** MPC CONTACTOS CON TODAS LAS OPCIONES  *******/
   //*********************************************************** */
   final contactosProvider =
       Provider.of<ContactosProvider>(context, listen: false);
@@ -315,7 +306,7 @@ listaContactos(BuildContext context, List<String> listaMenu) async {
 
 listaContactosWhatsapp(BuildContext context, List<String> listaMenu) async {
   //*********************************************************** */
-  /****************** un contacto MPA***************************/
+  /****************** un contacto MPB***************************/
   //*********************************************************** */
   final contactosProvider =
       Provider.of<ContactosProvider>(context, listen: false);
@@ -334,6 +325,30 @@ listaContactosWhatsapp(BuildContext context, List<String> listaMenu) async {
   }
 
   return listaWidgetContactos;
+}
+
+encabezadoApp(BuildContext context) {
+  final pref = Provider.of<Preferencias>(context);
+  final menuHorizontal = pref.menuHorizontal;
+  final double altura = MediaQuery.of(context).size.height;
+
+  return Container(
+    height: pref.menuHorizontal ? 276 : 200,
+    //   padding: EdgeInsets.only(left: 5, right: 5),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: 4,
+        ),
+        BotonesEncabezado(),
+        SizedBox(
+          height: 5,
+        ),
+        menuHorizontal ? encabezadoIcon(context) : Text(''),
+      ],
+    ),
+  );
 }
 
 class BotonesEncabezado extends StatelessWidget {
@@ -359,7 +374,7 @@ class BotonesEncabezado extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              //   color: Colors.black,
+              //color: Colors.yellow,
               child: Column(
                 children: [
                   Container(
@@ -455,63 +470,6 @@ class BotonesEncabezado extends StatelessWidget {
                 ],
               ),
             )
-
-            // Container(
-            //   padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-            //   //  color: Colors.green,
-            //   child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Container(
-            //           width: width / 2,
-            //           // color: Colors.red,
-            //           // padding: EdgeInsets.only(top: 5),
-            //           child: Center(child: ConfigWidget()),
-            //         ),
-            //         Container(
-            //           padding: EdgeInsets.only(right: 5),
-            //           //color: Colors.red,
-            //           width: width / 2,
-            //           height: 45,
-            //           child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Icon(Icons.wifi),
-            //                 Icon(Icons.gps_fixed),
-            //                 Icon(Icons.battery_alert),
-            //                 Icon(Icons.signal_cellular_alt_rounded),
-            //               ]),
-            //         ),
-            //       ]),
-            // ),
-            // SizedBox(
-            //   height: 5,
-            // ),
-            // Container(
-            //   padding: EdgeInsets.symmetric(horizontal: 5),
-            //   // color: Colors.blue,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       // Container(
-            //       //   height: 120,
-            //       //   width: 120,
-            //       // ),
-            //       Container(
-            //         height: 120,
-            //         width: 150,
-            //         child: Column(
-            //           children: [
-            //             HoraFecha(),
-            //             FechaReloj(),
-            //           ],
-            //         ),
-            //       ),
-
-            //       botonRojoHeader(context, true),
-            //     ],
-            //   ),
-            // ),
           ]),
     );
   }
@@ -643,65 +601,134 @@ class BotonAyuda extends StatelessWidget {
 
 Widget elementoApi2(BuildContext context, Application api) {
   final pref = Provider.of<Preferencias>(context, listen: false);
-  double size = MediaQuery.of(context).size.width;
+  // double size = MediaQuery.of(context).size.width;
   return GestureDetector(
-      onTap: () {
-        if (api.packageName != "") {
-          api.openApp();
-        }
-      },
-      child: Container(
-          //color: Colors.yellowAccent,
-          width: size / 2,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // height: 145,
-                //width: 120,
-                GestureDetector(
-                    onTap: () {
-                      eliminarApiMP(
-                          context, 'MPD' + api.packageName, api.appName);
-                    },
-                    child: pref.modoConfig
-                        ? Container(
-                            // width: 20,
-                            //height: 2,
-                            child: Center(
-                              child: Icon(
-                                Icons.close,
-                                size: 30,
-                                color: Colors.red,
-                              ),
-                            ),
-                          )
-                        : Container()),
+    onTap: () {
+      if (api.packageName != "") {
+        api.openApp();
+      }
+    },
+    child: Container(
+      // margin: EdgeInsets.symmetric(horizontal: 5.0),
+      // decoration: BoxDecoration(
+      //     color: Theme.of(context).scaffoldBackgroundColor,
+      //     borderRadius: BorderRadius.circular(20.0)),
+      // border:
+      //     Border.all(color: Theme.of(context).primaryColor, width: 1)),
+      //color: Colors.yellow,
+      //height: 100,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                width: 30,
+                height: 30,
+              ),
+              Image.memory(
+                (api as ApplicationWithIcon).icon,
+                width: 90,
+              ),
+              GestureDetector(
+                onTap: () {
+                  eliminarApiMP(context, 'MPD' + api.packageName, api.appName);
+                },
+                child: pref.modoConfig
+                    ? Container(
+                        width: 30,
+                        height: 30,
+                        child: Center(
+                          child: Icon(
+                            Icons.close,
+                            size: 30,
+                            color: Colors.red,
+                          ),
+                        ))
+                    : Container(
+                        width: 30,
+                        height: 30,
+                      ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 3,
+          ),
+          Text(
+            api.appName,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              // color: pref.paleta == '2' || pref.paleta == '5'
+              //     ? Colors.black
+              //     : Colors.white,
+              fontSize: 20,
+            ),
+          ),
+        ],
+      ),
+    ),
 
-                SizedBox(
-                  height: 5,
-                ),
-                Image.memory(
-                  (api as ApplicationWithIcon).icon,
-                  width: 90,
-                ),
-                SizedBox(
-                  height: 2,
-                ),
+    //  Container(
+    //     //color: Colors.yellowAccent,
+    //     width: size / 2,
+    //     child: Column(
+    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+    //         crossAxisAlignment: CrossAxisAlignment.center,
+    //         children: [
+    //           // height: 145,
+    //           //width: 120,
+    //           GestureDetector(
+    //               onTap: () {
+    //                 eliminarApiMP(
+    //                     context, 'MPD' + api.packageName, api.appName);
+    //               },
+    //               child: pref.modoConfig
+    //                   ? Container(
+    //                       // width: 20,
+    //                       //height: 2,
+    //                       child: Center(
+    //                         child: Icon(
+    //                           Icons.close,
+    //                           size: 30,
+    //                           color: Colors.red,
+    //                         ),
+    //                       ),
+    //                     )
+    //                   : Container()),
 
-                Text(
-                  api.appName,
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: size <= 320 ? 15 : 20,
-                    color: Theme.of(context).primaryColor,
-                    // color: pref.paleta == '2' || pref.paleta == '5'
-                    //     ? Colors.black
-                    //     : Colors.white,
-                  ),
-                )
-              ])));
+    //           SizedBox(
+    //             height: 5,
+    //           ),
+    //           Image.memory(
+    //             (api as ApplicationWithIcon).icon,
+    //             width: 90,
+    //           ),
+    //           SizedBox(
+    //             height: 2,
+    //           ),
+
+    //           Text(
+    //             api.appName,
+    //             textAlign: TextAlign.center,
+    //             overflow: TextOverflow.ellipsis,
+    //             style: TextStyle(
+    //               fontSize: size <= 320 ? 15 : 20,
+    //               color: Theme.of(context).primaryColor,
+    //               // color: pref.paleta == '2' || pref.paleta == '5'
+    //               //     ? Colors.black
+    //               //     : Colors.white,
+    //             ),
+    //           )
+    //         ]),
+    //         ),
+  );
 }
 
 Future<dynamic> eliminarApiMP(

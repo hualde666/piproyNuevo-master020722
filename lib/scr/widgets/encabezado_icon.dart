@@ -9,17 +9,6 @@ Widget encabezadoIcon(BuildContext context) {
   final pref = Provider.of<Preferencias>(context);
   List<Widget> _listaWidget = [];
 
-  // if (pref.iBateria) {
-  //   _listaWidget.add(widgetHorizontal(context, Icons.battery_std, 'bateria'));
-  // }
-
-  // if (pref.iWifi) {
-  //   _listaWidget.add(widgetHorizontal(
-  //     context,
-  //     Icons.wifi,
-  //     'wifi',
-  //   ));
-  // }
   if (pref.iLinterna) {
     _listaWidget.add(widgetHorizontal(
       context,
@@ -31,22 +20,6 @@ Widget encabezadoIcon(BuildContext context) {
   if (pref.iTelefono) {
     _listaWidget.add(widgetHorizontal(context, Icons.call, 'telefono'));
   }
-
-  // if (pref.iLinea) {
-  //   _listaWidget.add(widgetHorizontal(
-  //     context,
-  //     Icons.signal_cellular_alt_rounded,
-  //     'linea',
-  //   ));
-  // }
-
-  // if (pref.iGps) {
-  //   _listaWidget.add(widgetHorizontal(
-  //     context,
-  //     Icons.gps_fixed_rounded,
-  //     'gps',
-  //   ));
-  // }
 
   if (pref.iMensaje) {
     _listaWidget.add(widgetHorizontal(

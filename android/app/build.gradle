@@ -48,8 +48,8 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
         //*** version 14 en google play
-        versionCode = 18
-        versionName = "1.0.3"
+        versionCode = 19
+        versionName = "1.0.4"
     }
     //********************************************** comentar para Piedad/
 signingConfigs {
