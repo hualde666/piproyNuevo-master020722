@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.piproy.vitalfon">
    <application
-        android:label="vitalfon"
+        android:label="vitalfontest"
         android:icon="@mipmap/launcher_icon">
          <!-- <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyDCxqXm5MCzyPTyefAerOYPMlsJx1IjOtY"/> -->

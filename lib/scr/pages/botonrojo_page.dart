@@ -144,13 +144,6 @@ conListaEmergenia(BuildContext context, List<ContactoDatos> listaE) {
                 mandarSMS(listaE);
                 llamar(pref.telefonoEmergencia);
                 Navigator.pop(context);
-
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => ResumenEnvioPage(
-                //               listaE: listaE,
-                //             )));
               },
               child: Container(
                 height: MediaQuery.of(context).size.width <= 320 ? 150 : 180,
@@ -187,13 +180,6 @@ conListaEmergenia(BuildContext context, List<ContactoDatos> listaE) {
             )
           ],
         ),
-        // decoration: BoxDecoration(
-        //     color: pref.paleta == '4'
-        //         ? Colors.black
-        //         : Color.fromRGBO(200, 0, 0, 1.0),
-        //     borderRadius: BorderRadius.circular(20.0),
-        //     border:
-        //         Border.all(color: Theme.of(context).primaryColor, width: 4.0)),
       ),
     ),
   );
@@ -201,7 +187,7 @@ conListaEmergenia(BuildContext context, List<ContactoDatos> listaE) {
 
 sinListaEmergenia(BuildContext context) {
   final pref = Provider.of<Preferencias>(context);
-  double height = (MediaQuery.of(context).size.height * 0.60);
+  double height = (MediaQuery.of(context).size.height * 0.70);
 
   return SingleChildScrollView(
     child: Center(
@@ -212,17 +198,6 @@ sinListaEmergenia(BuildContext context) {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // Text(
-          //   'ADVERTENCIA',
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(
-          //     color: pref.paleta == '4'
-          //         ? Theme.of(context).primaryColor
-          //         : Colors.white,
-          //     fontWeight: FontWeight.bold,
-          //     fontSize: 40.0,
-          //   ),
-          // ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
@@ -274,11 +249,6 @@ sinListaEmergenia(BuildContext context) {
           ),
         ],
       ),
-      // decoration: BoxDecoration(
-// Color.fromRGBO(249, 75, 11, 1),
-      // borderRadius: BorderRadius.circular(20.0),
-      // border:
-      //     Border.all(color: Theme.of(context).primaryColor, width: 4.0)),
     )),
   );
 }
