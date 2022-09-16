@@ -67,7 +67,7 @@ class FechaReloj extends StatelessWidget {
           Text(
             '${reloj.meses[reloj.mes - 1]} ${reloj.dia}',
             style:
-                TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
+                TextStyle(fontSize: 22, color: Theme.of(context).primaryColor),
           ),
           Text('${reloj.dias[reloj.diaweek - 1]}',
               style: TextStyle(
