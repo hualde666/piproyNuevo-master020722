@@ -42,14 +42,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.piproy.vitalfon"
+        applicationId "com.piproy2.vitalfon"
        // 4 01 2022 minSdkVersion 21
        // 4 01 2022 targetSdkVersion 30
         minSdkVersion 21
         targetSdkVersion 30
         //*** version 14 en google play
-        versionCode = 22
-        versionName = "1.0.4"
+        versionCode = 1
+        versionName = "1.0.0"
     }
     //********************************************** comentar para Piedad/
 signingConfigs {
