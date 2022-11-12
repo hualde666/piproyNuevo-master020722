@@ -412,8 +412,12 @@ class BotonesEncabezado extends StatelessWidget {
                                       : Color.fromARGB(255, 239, 67, 67)),
                           Icon(
                               celProvider.conexionGps
+                                  //  ? Icons.location_on
+                                  //  : Icons.location_off,
+                                  // ? Icons.location_on_outlined
+                                  //: Icons.location_off_outlined,
                                   ? Icons.gps_fixed
-                                  : Icons.gps_off,
+                                  : Icons.gps_off_sharp,
                               color: celProvider.conexionGps
                                   ? pref.paleta != '1'
                                       ? Colors.green[900]
