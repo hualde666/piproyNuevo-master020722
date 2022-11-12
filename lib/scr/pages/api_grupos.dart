@@ -60,10 +60,10 @@ class ApiGruposPage extends StatelessWidget {
   ) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
-    double ancho = 280;
+    double ancho = 250;
     final pref = Provider.of<Preferencias>(context);
     if (width <= 320) {
-      ancho = 200;
+      ancho = 160;
     }
     return GestureDetector(
       onLongPress: () {
@@ -89,8 +89,8 @@ class ApiGruposPage extends StatelessWidget {
                 },
                 child: grupo != 'Todas' && pref.modoConfig
                     ? Container(
-                        width: 30,
-                        height: 30,
+                        width: 50,
+                        height: 60,
                         child: Center(
                           child: Icon(
                             Icons.arrow_back,
@@ -133,8 +133,9 @@ class ApiGruposPage extends StatelessWidget {
                 },
                 child: grupo != 'Todas' && pref.modoConfig
                     ? Container(
-                        width: 30,
-                        height: 30,
+//color: Colors.yellow,
+                        width: 50,
+                        height: 60,
                         child: Icon(
                           Icons.close,
                           size: 20,
@@ -174,10 +175,10 @@ class ApiGruposPage extends StatelessWidget {
           child: Container(
             height: height <= 500 ? 70 : 100,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: height <= 500 ? 10 : 60,
+                  height: 40, // height <= 500 ? 10 : 60,
                   child: Text('Crear grupo',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -185,10 +186,10 @@ class ApiGruposPage extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  height: height <= 500 ? 2 : 10,
+                  height: 2, //height <= 500 ? 2 : 10,
                 ),
                 Container(
-                  height: height <= 500 ? 25 : 30,
+                  height: 50, //height <= 500 ? 25 : 30,
                   child: TextFormField(
                     textCapitalization: TextCapitalization.words,
                     style: TextStyle(
@@ -211,11 +212,11 @@ class ApiGruposPage extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, // height <= 500 ? 20 : 30,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+                  // minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               onPressed: () {
                 String grupo;
@@ -241,11 +242,11 @@ class ApiGruposPage extends StatelessWidget {
               )),
         ),
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, //height <= 500 ? 20 : 30,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+//minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               onPressed: () {
                 Navigator.of(context).pop();
@@ -277,14 +278,14 @@ class ApiGruposPage extends StatelessWidget {
     final apiProvider = Provider.of<AplicacionesProvider>(context);
     return AlertDialog(
       title: Text(
-        ' Eliminar Grupo',
+        '$grupo',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 30,
         ),
       ),
       content: Text(
-        '¿Desea ELIMINAR el grupo $grupo ?',
+        '¿Desea eliminar este  grupo ?',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 25,
@@ -292,44 +293,50 @@ class ApiGruposPage extends StatelessWidget {
       ),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            onPressed: () {
-              // Eliminar de categoria
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+//minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              onPressed: () {
+                // Eliminar de categoria
 
-              Provider.of<AplicacionesProvider>(context, listen: false)
-                  .eliminarTipos(grupo);
-              // eliminar  a BD
-              DbTiposAplicaciones.db.eliminarGrupo(grupo);
-
-              ///
-              ///         ELIMNAR DEL MENU PRINCIPAL
-
-              if (apiProvider.listaMenu.contains('MPD' + grupo)) {
                 Provider.of<AplicacionesProvider>(context, listen: false)
-                    .eliminarTipoMP('MPD' + grupo);
-                DbTiposAplicaciones.db.eliminarGrupoMP(grupo);
-              }
+                    .eliminarTipos(grupo);
+                // eliminar  a BD
+                DbTiposAplicaciones.db.eliminarGrupo(grupo);
 
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'Si',
-            )),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'No',
-            )),
+                ///
+                ///         ELIMNAR DEL MENU PRINCIPAL
+
+                if (apiProvider.listaMenu.contains('MPD' + grupo)) {
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .eliminarTipoMP('MPD' + grupo);
+                  DbTiposAplicaciones.db.eliminarGrupoMP(grupo);
+                }
+
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Si',
+              )),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+//minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'No',
+              )),
+        ),
       ],
     );
   }
@@ -346,48 +353,54 @@ class ApiGruposPage extends StatelessWidget {
   AlertDialog agregaMpdForm(BuildContext context, String grupo) {
     final apiProvider = Provider.of<AplicacionesProvider>(context);
     return AlertDialog(
-      title: Text('Copiar grupo al Menu Inicio',
+      title: Text('$grupo',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,
           )),
-      content: Text('¿Desea copiar  $grupo  al  menu principal?',
+      content: Text('¿Desea copiar este grupo al menu principal?',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,
           )),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            onPressed: () {
-              final nuevo = new ApiTipos(grupo: 'MPF', nombre: grupo);
-              if (!apiProvider.listaMenu.contains('MPF' + grupo)) {
-                /// actualizar lista MENU
-                ///
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu('MPF' + grupo);
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+//minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              onPressed: () {
+                final nuevo = new ApiTipos(grupo: 'MPF', nombre: grupo);
+                if (!apiProvider.listaMenu.contains('MPF' + grupo)) {
+                  /// actualizar lista MENU
+                  ///
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .agregarMenu('MPF' + grupo);
 
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
-              }
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
 
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              'Si',
-            )),
-        ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('NO')),
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Si',
+              )),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+                  minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('NO')),
+        ),
       ],
     );
   }
@@ -449,7 +462,7 @@ class ApiGruposPage extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, //height <= 500 ? 20 : 30,
           child: ElevatedButton(
               onPressed: () {
                 // no puede estar en blanco ni ya definido
@@ -478,7 +491,7 @@ class ApiGruposPage extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(30, 20),
+//minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               child: Text(
                 'Si',
@@ -487,13 +500,13 @@ class ApiGruposPage extends StatelessWidget {
               )),
         ),
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50,
           child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
-                  minimumSize: Size(30, 20),
+                  // minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               child: Text(
                 'No',

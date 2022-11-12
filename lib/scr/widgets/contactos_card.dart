@@ -254,26 +254,32 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
 
           actionsAlignment: MainAxisAlignment.spaceAround,
           actions: [
-            ElevatedButton(
-                onPressed: () {
-                  DbTiposAplicaciones.db
-                      .deleteApi(grupo, contacto.nombre); //elimina api de BD
-                  /// elina contacto de pantalla
-                  Provider.of<AplicacionesProvider>(context, listen: false)
-                      .eliminarContacto(grupo, contacto);
+            Container(
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    DbTiposAplicaciones.db
+                        .deleteApi(grupo, contacto.nombre); //elimina api de BD
+                    /// elina contacto de pantalla
+                    Provider.of<AplicacionesProvider>(context, listen: false)
+                        .eliminarContacto(grupo, contacto);
 
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'Si',
-                )),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'NO',
-                )),
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Si',
+                  )),
+            ),
+            Container(
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'NO',
+                  )),
+            ),
           ],
         ),
       );
@@ -377,35 +383,47 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: Text('¿Desea eliminar $titulo  del menú principal?',
+        title: Text(' $titulo',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 30,
+            )),
+        content: Text('¿Desea eliminar contacto  del menú principal?',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 25,
             )),
         // shape: CircleBorder(),
-        elevation: 14.0,
-        actionsPadding: EdgeInsets.symmetric(horizontal: 30.0),
+        // elevation: 14.0,
+        //actionsPadding: EdgeInsets.symmetric(horizontal: 30.0),
         actionsAlignment: MainAxisAlignment.spaceAround,
+
         actions: [
-          ElevatedButton(
-              onPressed: () {
-                /// elina api de pantalla
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .eliminarTipoMP(tipo);
+          Container(
+            height: 50,
+            child: ElevatedButton(
+                onPressed: () {
+                  /// elina api de pantalla
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .eliminarTipoMP(tipo);
 
-                DbTiposAplicaciones.db
-                    .deleteApi(tipo.substring(0, 3), tipo.substring(3));
+                  DbTiposAplicaciones.db
+                      .deleteApi(tipo.substring(0, 3), tipo.substring(3));
 
-                //elimina api de BD
+                  //elimina api de BD
 
-                Navigator.pop(context);
-              },
-              child: Text('Si')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('NO')),
+                  Navigator.pop(context);
+                },
+                child: Text('Si')),
+          ),
+          Container(
+            height: 50,
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('NO')),
+          ),
         ],
       ),
     );
@@ -427,8 +445,8 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                     agregarMPA(context, contacto);
                   },
                   child: Container(
-                    width: 30,
-                    height: 30,
+                    width: 50,
+                    height: 90,
                     child: Icon(
                       Icons.arrow_back,
                       size: 30,
@@ -440,7 +458,7 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                   width: 30,
                 ),
           Container(
-            width: MediaQuery.of(context).size.width - 80,
+            width: MediaQuery.of(context).size.width - 120,
             child: Text(
               contacto.nombre,
               overflow: TextOverflow.ellipsis,
@@ -465,8 +483,8 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
               },
               child: eliminar && pref.modoConfig
                   ? Container(
-                      width: 30,
-                      height: 30,
+                      width: 50,
+                      height: 90,
                       child: Icon(
                         Icons.close,
                         size: 30,

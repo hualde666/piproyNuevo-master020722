@@ -89,7 +89,7 @@ class _MostrarContactoState extends State<MostrarContacto> {
       ),
     ];
     if (_contact.nombre != null) {
-      lista.add(dato('Primer Nombre:', _contact.nombre));
+      lista.add(dato('Nombre:', _contact.nombre));
     }
     // if (_contact.middleName != null && _contact.middleName != "") {
     //   lista.add(dato('Segundo Nombre:', _contact.middleName));
@@ -139,10 +139,12 @@ class _MostrarContactoState extends State<MostrarContacto> {
       children: [
         Container(
           height: 20,
+          padding: EdgeInsets.only(left: 10),
           // color: Color.fromRGBO(55, 57, 84, 1.0),
           child: Text('$titulo  ',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white, fontSize: 15)),
+              style: TextStyle(
+                  color: Theme.of(context).primaryColor, fontSize: 20)),
         ),
         Container(
           height: altoContainer,
@@ -150,15 +152,18 @@ class _MostrarContactoState extends State<MostrarContacto> {
           child: campo != null
               ? Center(
                   child: Text(' $campo',
-                      style:
-                          TextStyle(color: Colors.white, fontSize: altoLetra)),
+                      style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: altoLetra)),
                 )
               : Text('',
-                  style: TextStyle(color: Colors.white, fontSize: altoLetra)),
+                  style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: altoLetra)),
         ),
         Divider(
           height: 10,
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
         ),
       ],
     );

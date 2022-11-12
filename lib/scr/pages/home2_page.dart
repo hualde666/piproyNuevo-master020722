@@ -239,11 +239,11 @@ matrizApis(BuildContext context, List<String> listaMenu) async {
 
   if (listaApisWidget.isNotEmpty) {
     final altura = listaApisWidget.length > 2
-        ? 180.0 * (listaApisWidget.length / 2).round()
-        : 180.0;
+        ? 200.0 * (listaApisWidget.length / 2).round()
+        : 200.0;
     return Container(
       // color: Colors.white12,
-      padding: EdgeInsets.symmetric(horizontal: 5),
+      // padding: EdgeInsets.symmetric(horizontal: 5),
       height: altura,
       child: GridView.count(
           physics: NeverScrollableScrollPhysics(),
@@ -414,10 +414,10 @@ class BotonesEncabezado extends StatelessWidget {
                               celProvider.conexionGps
                                   //  ? Icons.location_on
                                   //  : Icons.location_off,
-                                  // ? Icons.location_on_outlined
-                                  //: Icons.location_off_outlined,
-                                  ? Icons.gps_fixed
-                                  : Icons.gps_off_sharp,
+                                  ? Icons.location_on_outlined
+                                  : Icons.location_off_outlined,
+//? Icons.gps_fixed
+                              //                                : Icons.gps_off_sharp,
                               color: celProvider.conexionGps
                                   ? pref.paleta != '1'
                                       ? Colors.green[900]
@@ -636,7 +636,7 @@ Widget elementoApi2(BuildContext context, Application api) {
               ),
               Image.memory(
                 (api as ApplicationWithIcon).icon,
-                width: 90,
+                width: pref.modoConfig ? 90 : 120,
               ),
               GestureDetector(
                 onTap: () {
@@ -644,8 +644,10 @@ Widget elementoApi2(BuildContext context, Application api) {
                 },
                 child: pref.modoConfig
                     ? Container(
-                        width: 30,
-                        height: 30,
+                        // pureba tamaño area tactil antes 30x30
+                        width: 50,
+                        height: 90,
+                        // color: Colors.yellow,
                         child: Center(
                           child: Icon(
                             Icons.close,
@@ -741,35 +743,46 @@ Future<dynamic> eliminarApiMP(
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      content: Text('¿Desea eliminar $nombre  del menú principal?',
+      title: Text('$nombre',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 30,
+          )),
+      content: Text('¿Desea eliminar app  del menú principal?',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,
           )),
       // shape: CircleBorder(),
-      elevation: 14.0,
-      actionsPadding: EdgeInsets.symmetric(horizontal: 30.0),
+//elevation: 14.0,
+//      actionsPadding: EdgeInsets.symmetric(horizontal: 30.0),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            onPressed: () {
-              /// elina api de pantalla
-              Provider.of<AplicacionesProvider>(context, listen: false)
-                  .eliminarTipoMP(tipo);
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                /// elina api de pantalla
+                Provider.of<AplicacionesProvider>(context, listen: false)
+                    .eliminarTipoMP(tipo);
 
-              DbTiposAplicaciones.db
-                  .deleteApi(tipo.substring(0, 3), tipo.substring(3));
+                DbTiposAplicaciones.db
+                    .deleteApi(tipo.substring(0, 3), tipo.substring(3));
 
-              //elimina api de BD
+                //elimina api de BD
 
-              Navigator.pop(context);
-            },
-            child: Text('Si')),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('NO')),
+                Navigator.pop(context);
+              },
+              child: Text('Si')),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('NO')),
+        ),
       ],
     ),
   );

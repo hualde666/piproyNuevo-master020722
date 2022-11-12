@@ -57,7 +57,7 @@ class ContactsGruposPage extends StatelessWidget {
   ) {
     double width = MediaQuery.of(context).size.width;
     // double height = MediaQuery.of(context).size.height;
-    double ancho = 280;
+    double ancho = 240;
     final pref = Provider.of<Preferencias>(context);
 
     if (width <= 320) {
@@ -99,8 +99,8 @@ class ContactsGruposPage extends StatelessWidget {
                     },
                     child: grupo != 'Todos' && pref.modoConfig
                         ? Container(
-                            width: 30,
-                            height: 30,
+                            width: 50,
+                            height: 70,
                             child: Center(
                               child: Icon(
                                 Icons.arrow_back,
@@ -147,8 +147,8 @@ class ContactsGruposPage extends StatelessWidget {
                             grupo != 'Emergencia' &&
                             pref.modoConfig)
                         ? Container(
-                            width: 30,
-                            height: 30,
+                            width: 50,
+                            height: 70,
                             child: Icon(
                               Icons.close,
                               size: 30,
@@ -292,59 +292,65 @@ class ContactsGruposPage extends StatelessWidget {
     final apiProvider = Provider.of<AplicacionesProvider>(context);
     return AlertDialog(
       title: Text(
-        ' Eliminar Grupo',
+        '$grupo',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 30,
         ),
       ),
-      content: Text('¿Desea ELIMINAR grupo de contacto $grupo ?',
+      content: Text('¿Desea elimiar este grupo de contacto  ?',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 25,
           )),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            onPressed: () {
-              // Eliminar de categoria
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                // Eliminar de categoria
 
-              Provider.of<AplicacionesProvider>(context, listen: false)
-                  .eliminarContactTipos(grupo);
-              // eliminar  en la  BD
-              DbTiposAplicaciones.db.eliminarGrupo(grupo);
-
-              ///
-              ///         ELIMNAR DEL MENU PRINCIPAL
-
-              if (apiProvider.listaMenu.contains('MPC' + grupo)) {
                 Provider.of<AplicacionesProvider>(context, listen: false)
-                    .eliminarTipoMP('MPG' + grupo);
-                DbTiposAplicaciones.db.eliminarGrupoMP(grupo);
-              }
+                    .eliminarContactTipos(grupo);
+                // eliminar  en la  BD
+                DbTiposAplicaciones.db.eliminarGrupo(grupo);
 
-              Navigator.of(context).pop();
-            },
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            child: Text(
-              'Si',
-              style: TextStyle(fontSize: 25, color: Colors.white),
-            )),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            child: Text(
-              'No',
-              style: TextStyle(fontSize: 25, color: Colors.white),
-            )),
+                ///
+                ///         ELIMNAR DEL MENU PRINCIPAL
+
+                if (apiProvider.listaMenu.contains('MPC' + grupo)) {
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .eliminarTipoMP('MPG' + grupo);
+                  DbTiposAplicaciones.db.eliminarGrupoMP(grupo);
+                }
+
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+                  // minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              child: Text(
+                'Si',
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              )),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+                  //: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              child: Text(
+                'No',
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              )),
+        ),
       ],
     );
   }
@@ -369,39 +375,45 @@ class ContactsGruposPage extends StatelessWidget {
               )),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            onPressed: () {
-              final nuevo =
-                  new ApiTipos(grupo: 'MPE', nombre: grupo, tipo: "3");
-              if (!apiProvider.listaMenu.contains('MPE' + grupo)) {
-                /// actualizar lista MENU
-                ///
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu('MPE' + grupo);
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                final nuevo =
+                    new ApiTipos(grupo: 'MPE', nombre: grupo, tipo: "3");
+                if (!apiProvider.listaMenu.contains('MPE' + grupo)) {
+                  /// actualizar lista MENU
+                  ///
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .agregarMenu('MPE' + grupo);
 
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
-              }
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
 
-              Navigator.of(context).pop();
-            },
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            child: Text(
-              'Si',
-              style: TextStyle(fontSize: 25, color: Colors.white),
-            )),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: ElevatedButton.styleFrom(
-                //change width and height on your need width = 200 and height = 50
-                minimumSize: Size(30, 20),
-                backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-            child: const Text('NO',
-                style: TextStyle(fontSize: 25, color: Colors.white))),
+                Navigator.of(context).pop();
+              },
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+                  // minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              child: Text(
+                'Si',
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              )),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                  //change width and height on your need width = 200 and height = 50
+                  minimumSize: Size(30, 20),
+                  backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+              child: const Text('NO',
+                  style: TextStyle(fontSize: 25, color: Colors.white))),
+        ),
       ],
     );
   }

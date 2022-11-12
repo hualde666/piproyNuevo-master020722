@@ -14,8 +14,11 @@ abrirWhatsapp(String phone, String mensaje) async {
 }
 
 llamar(String telefono) async {
+  if (telefono.isNotEmpty) {
+    await FlutterPhoneDirectCaller.callNumber(telefono);
+  }
   //String url = 'tel:' + telefono;
-  await FlutterPhoneDirectCaller.callNumber(telefono);
+
   // if (await canLaunch(url)) {
   //   await launch(url);
   //   // } else {

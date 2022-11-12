@@ -80,35 +80,41 @@ class Desbloqueo extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            //change width and height on your need width = 200 and height = 50
-                            minimumSize: Size(40, 20),
-                            backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-                        onPressed: () {
-                          if (validaPasword()) {
-                            final pref = Provider.of<Preferencias>(context,
-                                listen: false);
-                            pref.modoConfig = !pref.modoConfig;
+                    Container(
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              //change width and height on your need width = 200 and height = 50
+                              //  minimumSize: Size(40, 20),
+                              backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+                          onPressed: () {
+                            if (validaPasword()) {
+                              final pref = Provider.of<Preferencias>(context,
+                                  listen: false);
+                              pref.modoConfig = !pref.modoConfig;
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          child: Text(
+                            'Si',
+                            style: TextStyle(fontSize: height <= 500 ? 15 : 25),
+                          )),
+                    ),
+                    Container(
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              //change width and height on your need width = 200 and height = 50
+//minimumSize: Size(40, 20),
+                              backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
+                          onPressed: () {
                             Navigator.of(context).pop();
-                          }
-                        },
-                        child: Text(
-                          'Si',
-                          style: TextStyle(fontSize: height <= 500 ? 15 : 25),
-                        )),
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            //change width and height on your need width = 200 and height = 50
-                            minimumSize: Size(40, 20),
-                            backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          'No',
-                          style: TextStyle(fontSize: height <= 500 ? 15 : 25),
-                        )),
+                          },
+                          child: Text(
+                            'No',
+                            style: TextStyle(fontSize: height <= 500 ? 15 : 25),
+                          )),
+                    ),
                   ],
                 )
               ],

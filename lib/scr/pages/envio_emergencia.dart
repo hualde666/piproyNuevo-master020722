@@ -110,14 +110,17 @@ mandarSMS(List<ContactoDatos> listaE) async {
 
   ///  preguntar si GPS prendido
   bool gpson = await _androidChannel.conectadoGps();
+  print(gpson);
   if (gpson) {
     final pos = await _geoLocal();
     //final dir = await _getAddressFromLatLng(pos); // direcion en texto.
 
     final lat = pos.latitude;
     final lng = pos.longitude;
-    pos2 = ' https://maps.google5.com/?q=$lat,$lng';
+    // pos2 = ' https://maps.google5.com/?q=$lat,$lng';
+    pos2 = ' https://www.google.com/maps/search/?api=1&?query==$lat,$lng';
   }
+  print(pos2);
 
   ///************* genero lista con solo  los telefonos de la lista */
   final List<String> _phone = [];

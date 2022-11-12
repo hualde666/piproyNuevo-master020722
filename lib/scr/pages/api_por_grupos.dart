@@ -46,13 +46,14 @@ class ApiPorGrupoPage extends StatelessWidget {
                 // snapshot contiene todas las app del grupo
 
                 return Container(
-                  padding: EdgeInsets.only(bottom: 55, right: 5, left: 5),
+                  // padding: EdgeInsets.only(bottom: 55, right: 5, left: 5),
                   child: GridView.count(
-                    padding: EdgeInsets.only(bottom: 70, left: 1, right: 1),
+                    //spadding: EdgeInsets.only(left: 1, right: 1),
+                    physics: NeverScrollableScrollPhysics(),
                     children: snapshot.data,
-                    childAspectRatio: 1.2,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
+//childAspectRatio: 1.2,
+                    //                  mainAxisSpacing: 4,
+                    //s              crossAxisSpacing: 4,
                     crossAxisCount: 2,
                   ),
                 );
@@ -107,68 +108,73 @@ class ElementoApi extends StatelessWidget {
         }
       },
       child: Container(
+        //height: 60,
         // margin: EdgeInsets.symmetric(horizontal: 5.0),
-        decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(20.0)),
+        // decoration: BoxDecoration(
+        //     color: Theme.of(context).scaffoldBackgroundColor,
+        //     borderRadius: BorderRadius.circular(20.0)),
         // border:
         //     Border.all(color: Theme.of(context).primaryColor, width: 1)),
-        // color: Theme.of(context).primaryColor,
+
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               height: 5,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    //if (grupo != 'Todas') {
-                    agregaMPB(context, api);
-                    //}
-                  },
-                  child: pref.modoConfig
-                      ? Container(
-                          width: 30,
-                          height: 30,
-                          child: Center(
-                            child: Icon(
-                              Icons.arrow_back,
-                              size: 30,
-                              color: Colors.blue,
+            Container(
+              child: pref.modoConfig
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            //if (grupo != 'Todas') {
+                            agregaMPB(context, api);
+                            //}
+                          },
+                          child: Container(
+                            //  color: Colors.yellow,
+                            width: 50,
+                            height: 90,
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_back,
+                                size: 30,
+                                color: Colors.blue,
+                              ),
                             ),
                           ),
-                        )
-                      : Container(
-                          width: 30,
-                          height: 30,
                         ),
-                ),
-                Image.memory(
-                  (api as ApplicationWithIcon).icon,
-                  width: 90,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      if (grupo != 'Todas') {
-                        eliminarApi(context, grupo);
-                      }
-                    },
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      child: grupo != 'Todas' && pref.modoConfig
-                          ? Center(
-                              child: Icon(
-                                Icons.close,
-                                size: 30,
-                                color: Colors.red,
-                              ),
-                            )
-                          : Container(),
-                    )),
-              ],
+                        Image.memory(
+                          (api as ApplicationWithIcon).icon,
+                          width: 72,
+                        ),
+                        GestureDetector(
+                            onTap: () {
+                              if (grupo != 'Todas') {
+                                eliminarApi(context, grupo);
+                              }
+                            },
+                            child: Container(
+                              width: 50,
+                              height: 90,
+                              child: grupo != 'Todas' && pref.modoConfig
+                                  ? Center(
+                                      child: Icon(
+                                        Icons.close,
+                                        size: 30,
+                                        color: Colors.red,
+                                      ),
+                                    )
+                                  : Container(),
+                            )),
+                      ],
+                    )
+                  : Image.memory(
+                      (api as ApplicationWithIcon).icon,
+                      width: 120,
+                    ),
             ),
             SizedBox(
               height: 3,
@@ -206,26 +212,32 @@ class ElementoApi extends StatelessWidget {
               )),
           actionsAlignment: MainAxisAlignment.spaceAround,
           actions: [
-            ElevatedButton(
-                onPressed: () {
-                  //  / elina api de pantalla
-                  Provider.of<AplicacionesProvider>(context, listen: false)
-                      .eliminar(api);
-                  DbTiposAplicaciones.db
-                      .deleteApi(tipo, api.packageName); //elimina api de BD
+            Container(
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    //  / elina api de pantalla
+                    Provider.of<AplicacionesProvider>(context, listen: false)
+                        .eliminar(api);
+                    DbTiposAplicaciones.db
+                        .deleteApi(tipo, api.packageName); //elimina api de BD
 
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'Si',
-                )),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text(
-                  'NO',
-                )),
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'Si',
+                  )),
+            ),
+            Container(
+              height: 50,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'NO',
+                  )),
+            ),
           ],
         ),
       );
@@ -249,26 +261,33 @@ class ElementoApi extends StatelessWidget {
           )),
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
-        ElevatedButton(
-            onPressed: () {
-              final nuevo = new ApiTipos(grupo: 'MPD', nombre: api.packageName);
-              if (!apiProvider.listaMenu.contains('MPD' + api.packageName)) {
-                /// actualizar lista MENU
-                ///
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu('MPD' + api.packageName);
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                final nuevo =
+                    new ApiTipos(grupo: 'MPD', nombre: api.packageName);
+                if (!apiProvider.listaMenu.contains('MPD' + api.packageName)) {
+                  /// actualizar lista MENU
+                  ///
+                  Provider.of<AplicacionesProvider>(context, listen: false)
+                      .agregarMenu('MPD' + api.packageName);
 
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
-              }
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
 
-              Navigator.of(context).pop();
-            },
-            child: Text('Si')),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text('NO')),
+                Navigator.of(context).pop();
+              },
+              child: Text('Si')),
+        ),
+        Container(
+          height: 50,
+          child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('NO')),
+        ),
       ],
     );
   }
