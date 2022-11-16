@@ -100,30 +100,38 @@ class OpcionesPage extends StatelessWidget {
                         color:
                             Colors.white38, // Theme.of(context).primaryColor,
                         width: 0.5)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 20,
+                child: Center(
+                  child: Stack(children: [
+                    Text(
+                      'activar o desactivar busqueda en google',
+                      style: TextStyle(color: Colors.white),
                     ),
-                    Container(
-                      child: Center(
-                          child: Image(
-                              image: AssetImage('assets/google.png'),
-                              fit: BoxFit.fill)),
-                      height: 40,
-                      width: 195,
-                      //color: Colors.red),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          child: Center(
+                              child: Image(
+                                  image: AssetImage('assets/google.png'),
+                                  fit: BoxFit.fill)),
+                          height: 40,
+                          width: 195,
+                          //color: Colors.red),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(
+                          Icons.search,
+                          color: Colors.blue,
+                          size: 30,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Icon(
-                      Icons.search,
-                      color: Colors.blue,
-                      size: 30,
-                    ),
-                  ],
+                  ]),
                 ),
               ),
             ),
@@ -163,45 +171,45 @@ class OpcionesPage extends StatelessWidget {
 
           //       : Colors.grey,
           // ),
-          child: Container(
-            height: 40,
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-            decoration: BoxDecoration(
+          //         child: Container(
+          //         height: 40,
+          margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+          decoration: BoxDecoration(
+              color: pref.iContactos
+                  ? Theme.of(context).backgroundColor
+                  : Theme.of(context).backgroundColor.withOpacity(0.1),
+              // color:
+              //     /** es un contacto o grupo de contacto */
+              //     Colors.green,
+              borderRadius: BorderRadius.circular(20.0),
+              border: Border.all(
                 color: pref.iContactos
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).backgroundColor.withOpacity(0.1),
-                // color:
-                //     /** es un contacto o grupo de contacto */
-                //     Colors.green,
-                borderRadius: BorderRadius.circular(20.0),
-                border: Border.all(
-                  color: pref.iContactos
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColor.withOpacity(0.1),
-                )),
-            child: Center(
-              child: Text(
-                'Contactos',
-                style: TextStyle(
-                  color: pref.iContactos
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColor.withOpacity(0.1),
-                  fontSize: 30,
-                ),
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).primaryColor.withOpacity(0.1),
+              )),
+          child: Center(
+            child: Text(
+              'Contactos',
+              style: TextStyle(
+                color: pref.iContactos
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).primaryColor.withOpacity(0.1),
+                fontSize: 30,
               ),
             ),
           ),
         ),
       ),
+      //   ),
       Divider(
         height: 2,
         color: Theme.of(context).primaryColor,
       ),
       GestureDetector(
-        onTap: () {
-          pref.iAplicaciones = !pref.iAplicaciones;
-        },
-        child: Container(
+          onTap: () {
+            pref.iAplicaciones = !pref.iAplicaciones;
+          },
+          child: Container(
             height: 90,
             // decoration: BoxDecoration(
             //   color: pref.iAplicaciones
@@ -210,31 +218,31 @@ class OpcionesPage extends StatelessWidget {
 
             //       : Colors.grey,
             // ),
-            child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-              decoration: BoxDecoration(
+            //      child: Container(
+            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            decoration: BoxDecoration(
+                color: pref.iAplicaciones
+                    ? Theme.of(context).backgroundColor
+                    : Theme.of(context).backgroundColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all(
                   color: pref.iAplicaciones
-                      ? Theme.of(context).backgroundColor
-                      : Theme.of(context).backgroundColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20.0),
-                  border: Border.all(
-                    color: pref.iAplicaciones
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColor.withOpacity(0.1),
-                  )),
-              child: Center(
-                child: Text(
-                  'Aplicaciones',
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: pref.iAplicaciones
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColor.withOpacity(0.1),
-                  ),
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).primaryColor.withOpacity(0.1),
+                )),
+            child: Center(
+              child: Text(
+                'Aplicaciones',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: pref.iAplicaciones
+                      ? Theme.of(context).primaryColor
+                      : Theme.of(context).primaryColor.withOpacity(0.1),
                 ),
               ),
-            )),
-      ),
+            ),
+          )),
+      //  ),
       Divider(
         height: 2,
         color: Theme.of(context).primaryColor,
@@ -269,15 +277,6 @@ class IconOpcion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //height: 70,
-      // decoration: BoxDecoration(
-      //   //  borderRadius: BorderRadius.circular(20),
-      //   border: Border.all(color: Theme.of(context).primaryColor, width: 2.0),
-      //   color: activo
-      //       ? Theme.of(context).scaffoldBackgroundColor
-      //       // Theme.of(context).primaryColor
-      //       : Colors.grey,
-      // ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

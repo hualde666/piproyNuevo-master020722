@@ -384,7 +384,7 @@ class BotonesEncabezado extends StatelessWidget {
                     child: Center(child: ConfigWidget()),
                   ),
                   SizedBox(
-                    height: 18,
+                    height: 10,
                   ),
                   HoraFecha(),
                   FechaReloj(),
@@ -533,33 +533,43 @@ class ConfigWidget extends StatelessWidget {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => ConfiguracionPage()));
       },
-      child: Container(
-          padding: EdgeInsets.all(10),
-          width: 40,
-          height: 40,
-          decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 1,
-                spreadRadius: 0.5,
-                offset: Offset(0, 3),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(100.0),
-            border: pref.paleta == '4'
-                ? Border.all(color: Theme.of(context).primaryColor)
-                : Border.all(color: Theme.of(context).backgroundColor),
+      child: Center(
+        child: Stack(children: [
+          Text(
+            'configurar vitalfon',
+            style: TextStyle(color: Theme.of(context).scaffoldBackgroundColor),
           ),
-          // border: Border.all(
-          //     width: 0.5, color: Theme.of(context).primaryColor)),
-          // margin: EdgeInsets.only(right: 5),
-          child: Icon(
-            Icons.build,
-            size: 20,
-            //color: Theme.of(context).primaryColor,
-          )),
+          Center(
+            child: Container(
+                // padding: EdgeInsets.all(10),
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Theme.of(context).backgroundColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      blurRadius: 1,
+                      spreadRadius: 0.5,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(100.0),
+                  border: pref.paleta == '4'
+                      ? Border.all(color: Theme.of(context).primaryColor)
+                      : Border.all(color: Theme.of(context).backgroundColor),
+                ),
+                // border: Border.all(
+                //     width: 0.5, color: Theme.of(context).primaryColor)),
+                // margin: EdgeInsets.only(right: 5),
+                child: Icon(
+                  Icons.build,
+                  size: 25,
+                  //color: Theme.of(context).primaryColor,
+                )),
+          ),
+        ]),
+      ),
     );
   }
 }

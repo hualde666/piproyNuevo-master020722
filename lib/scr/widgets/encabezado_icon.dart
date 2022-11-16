@@ -58,6 +58,9 @@ Widget encabezadoIcon(BuildContext context) {
 }
 
 Widget widgetHorizontal(BuildContext context, IconData icon, String titulo) {
+  final pref = Provider.of<Preferencias>(context);
+  String paleta = pref.paleta;
+
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
@@ -75,7 +78,9 @@ Widget widgetHorizontal(BuildContext context, IconData icon, String titulo) {
       ),
       Text(
         titulo,
-        style: TextStyle(color: Colors.white60),
+        style: TextStyle(
+            color:
+                paleta == '5' || paleta == '2' ? Colors.black : Colors.white60),
       )
     ],
   );

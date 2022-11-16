@@ -81,24 +81,24 @@ class ContactsGruposPage extends StatelessWidget {
         //   child:
         // return
         child: Container(
-            margin: EdgeInsets.symmetric(vertical: 3, horizontal: 4.0),
-            height: 70,
-            decoration: BoxDecoration(
-                color: Theme.of(context).backgroundColor,
-                borderRadius: BorderRadius.circular(20.0),
-                border: Border.all(color: Theme.of(context).primaryColor)),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (grupo != 'Todos') {
-                        //**  agrega grupo de contacto al menu principal */
-                        agregaMPC(context, grupo);
-                      }
-                    },
-                    child: grupo != 'Todos' && pref.modoConfig
-                        ? Container(
+          margin: EdgeInsets.symmetric(vertical: 3, horizontal: 4.0),
+          height: 70,
+          decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+              borderRadius: BorderRadius.circular(20.0),
+              border: Border.all(color: Theme.of(context).primaryColor)),
+          child: grupo != 'Todos' && pref.modoConfig
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                      GestureDetector(
+                          onTap: () {
+                            // if (grupo != 'Todos') {
+                            //**  agrega grupo de contacto al menu principal */
+                            agregaMPC(context, grupo);
+                            // }
+                          },
+                          child: Container(
                             width: 50,
                             height: 70,
                             child: Center(
@@ -108,59 +108,71 @@ class ContactsGruposPage extends StatelessWidget {
                                 color: Colors.blue,
                               ),
                             ),
-                          )
-                        : Container(
-                            width: 30,
-                            height: 30,
+                          )),
+                      GestureDetector(
+                        onTap: () {
+                          Provider.of<AplicacionesProvider>(context,
+                                  listen: false)
+                              .tipoSeleccion = grupo;
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ContactsPorGrupoPage()),
+                          );
+                        },
+                        child: Container(
+                          width: ancho,
+                          child: Center(
+                            child: Text(
+                              grupo,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 40,
+                              ), // fontWeight: FontWeight.bold),
+                            ),
                           ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Provider.of<AplicacionesProvider>(context, listen: false)
-                          .tipoSeleccion = grupo;
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ContactsPorGrupoPage()),
-                      );
-                    },
-                    child: Container(
-                      width: ancho,
-                      child: Center(
-                        child: Text(
-                          grupo,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 40,
-                          ), // fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            eliminarTipo(context, grupo);
+                          },
+                          child: grupo != 'Emergencia'
+                              ? Container(
+                                  width: 50,
+                                  height: 70,
+                                  child: Icon(
+                                    Icons.close,
+                                    size: 30,
+                                    color: Colors.red,
+                                  ),
+                                )
+                              : Container())
+                    ])
+              : GestureDetector(
+                  onTap: () {
+                    Provider.of<AplicacionesProvider>(context, listen: false)
+                        .tipoSeleccion = grupo;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ContactsPorGrupoPage()),
+                    );
+                  },
+                  child: Container(
+                    // width:,
+                    child: Center(
+                      child: Text(
+                        grupo,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 40,
+                        ), // fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      if (grupo != 'Todos') {
-                        eliminarTipo(context, grupo);
-                      }
-                    },
-                    child: (grupo != 'Todos' &&
-                            grupo != 'Emergencia' &&
-                            pref.modoConfig)
-                        ? Container(
-                            width: 50,
-                            height: 70,
-                            child: Icon(
-                              Icons.close,
-                              size: 30,
-                              color: Colors.red,
-                            ),
-                          )
-                        : Container(
-                            height: 30,
-                            width: 30,
-                          ),
-                  ),
-                ])));
+                ),
+        ));
   }
 
   ///
@@ -198,7 +210,7 @@ class ContactsGruposPage extends StatelessWidget {
                 height: height <= 500 ? 2 : 10,
               ),
               Container(
-                height: height <= 500 ? 24 : 30,
+                height: 40, // height <= 500 ? 24 : 30,
                 child: TextFormField(
                   textCapitalization: TextCapitalization.words,
                   style: TextStyle(
@@ -220,11 +232,11 @@ class ContactsGruposPage extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, // height <= 500 ? 20 : 30,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+                  // minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               onPressed: () {
                 String grupo = '';
@@ -252,14 +264,14 @@ class ContactsGruposPage extends StatelessWidget {
               )),
         ),
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, //height <= 500 ? 20 : 30,
           child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+                  //minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               child: Text(
                 'No',
@@ -480,7 +492,7 @@ class ContactsGruposPage extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceAround,
       actions: [
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, // height <= 500 ? 20 : 30,
           child: ElevatedButton(
               onPressed: () {
                 String grupoNuevo = "";
@@ -510,7 +522,7 @@ class ContactsGruposPage extends StatelessWidget {
               },
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+                  //minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               child: Text(
                 'Si',
@@ -519,14 +531,14 @@ class ContactsGruposPage extends StatelessWidget {
               )),
         ),
         Container(
-          height: height <= 500 ? 20 : 30,
+          height: 50, // height <= 500 ? 20 : 30,
           child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               style: ElevatedButton.styleFrom(
                   //change width and height on your need width = 200 and height = 50
-                  minimumSize: Size(30, 20),
+                  // minimumSize: Size(30, 20),
                   backgroundColor: Color.fromRGBO(249, 75, 11, 1)),
               child: Text(
                 'No',

@@ -40,7 +40,7 @@ class Desbloqueo extends StatelessWidget {
                   height: 40,
                 ),
                 Container(
-                  // height: height <= 500 ? 10 : 60,
+                  height: 60,
                   child: Text('Ingrese clave:',
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -49,16 +49,15 @@ class Desbloqueo extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Container(
-                  height: height <= 500 ? 25 : 30,
+                  height: 80,
                   margin: EdgeInsets.symmetric(horizontal: 40),
                   child: TextFormField(
                     // textCapitalization: TextCapitalization.words,
                     style: TextStyle(
-                        fontSize: height <= 500 ? 15 : 25,
-                        color: Theme.of(context).primaryColor),
+                        fontSize: 40, color: Theme.of(context).primaryColor),
                     //    controller: _tipoControle,
                     validator: (valor) {
                       return valor != 'vitalfon'
