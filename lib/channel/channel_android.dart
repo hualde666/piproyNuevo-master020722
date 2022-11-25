@@ -57,7 +57,18 @@ class AndroidChannel {
 
   Future<bool> conectadoWifi() async {
     try {
-      final result = await _methodChannel.invokeMethod("wifi");
+      final result = await _methodChannel.invokeMethod("wifion");
+
+      return result;
+    } catch (e) {
+      //print('ERROR: $e');
+      return false;
+    }
+  }
+
+  Future<bool> conectadoWifiCon() async {
+    try {
+      final result = await _methodChannel.invokeMethod("wifioncon");
 
       return result;
     } catch (e) {

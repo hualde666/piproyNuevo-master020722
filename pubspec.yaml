@@ -32,7 +32,7 @@ dependencies:
   dependencies:
   url_launcher: ^6.1.4
 
-  location: ^4.2.0
+  location: ^4.4.0
 
   
   sqflite: ^2.0.0+4
@@ -40,8 +40,10 @@ dependencies:
 
   permission_handler: ^10.0.0
   #permission_handler: ^8.1.6
-  
-  contacts_service: ^0.4.6
+ # quiver: ^2.0.1-nullsafety
+
+
+  contacts_service: ^0.6.3
   #quiver: 
   provider: 6.0.0
   shared_preferences: ^2.0.6
@@ -52,13 +54,14 @@ dependencies:
   flutter_sms: ^2.3.3
   #whatsapp_unilink: ^2.0.0
   audioplayers: ^0.20.1
-  device_apps: ^2.1.1
+  device_apps: ^2.2.0
  
   #android_intent:
   video_player:
   
   flutter_phone_direct_caller: ^2.1.0
-
+dependency_overrides:
+  quiver: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

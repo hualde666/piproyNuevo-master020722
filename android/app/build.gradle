@@ -48,7 +48,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 31
         //*** version 14 en google play
-        versionCode =4
+        versionCode = 7
         versionName = "1.0.0"
     }
     //********************************************** comentar para Piedad/

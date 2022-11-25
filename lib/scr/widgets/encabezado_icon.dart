@@ -79,8 +79,9 @@ Widget widgetHorizontal(BuildContext context, IconData icon, String titulo) {
       Text(
         titulo,
         style: TextStyle(
-            color:
-                paleta == '5' || paleta == '2' ? Colors.black : Colors.white60),
+            color: paleta == '5' || paleta == '2' || paleta == '4'
+                ? Theme.of(context).primaryColor
+                : Colors.white60),
       )
     ],
   );

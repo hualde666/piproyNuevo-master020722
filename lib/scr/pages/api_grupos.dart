@@ -99,10 +99,7 @@ class ApiGruposPage extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Container(
-                        width: 30,
-                        height: 30,
-                      ),
+                    : Container(),
               ),
               GestureDetector(
                 onTap: () {
@@ -133,7 +130,6 @@ class ApiGruposPage extends StatelessWidget {
                 },
                 child: grupo != 'Todas' && pref.modoConfig
                     ? Container(
-//color: Colors.yellow,
                         width: 50,
                         height: 60,
                         child: Icon(
@@ -142,10 +138,7 @@ class ApiGruposPage extends StatelessWidget {
                           color: Colors.red,
                         ),
                       )
-                    : Container(
-                        height: 30,
-                        width: 30,
-                      ),
+                    : Container(),
               ),
             ],
           )),

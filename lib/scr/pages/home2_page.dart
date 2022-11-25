@@ -357,6 +357,9 @@ class BotonesEncabezado extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     final pref = Provider.of<Preferencias>(context);
     final celProvider = Provider.of<EstadoProvider>(context);
+    const IconData signal_wifi_statusbar_connected_no_internet_4_rounded =
+        IconData(0xf018a, fontFamily: 'MaterialIcons');
+
     //double height = MediaQuery.of(context).size.height;
     // double anchoConfig = 50;
     // double iconConfig = 30;
@@ -401,7 +404,8 @@ class BotonesEncabezado extends StatelessWidget {
                         children: [
                           Icon(
                               celProvider.conexionWifi
-                                  ? Icons.wifi
+                                  ? Icons
+                                      .wifi //signal_wifi_statusbar_connected_no_internet_4_rounded // Icons.wifi
                                   : Icons.wifi_off,
                               color: celProvider.conexionWifi
                                   ? pref.paleta != '1'

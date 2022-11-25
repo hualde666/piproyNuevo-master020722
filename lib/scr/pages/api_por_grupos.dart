@@ -46,14 +46,8 @@ class ApiPorGrupoPage extends StatelessWidget {
                 // snapshot contiene todas las app del grupo
 
                 return Container(
-                  // padding: EdgeInsets.only(bottom: 55, right: 5, left: 5),
                   child: GridView.count(
-                    //spadding: EdgeInsets.only(left: 1, right: 1),
-                    physics: NeverScrollableScrollPhysics(),
                     children: snapshot.data,
-//childAspectRatio: 1.2,
-                    //                  mainAxisSpacing: 4,
-                    //s              crossAxisSpacing: 4,
                     crossAxisCount: 2,
                   ),
                 );
@@ -108,14 +102,6 @@ class ElementoApi extends StatelessWidget {
         }
       },
       child: Container(
-        //height: 60,
-        // margin: EdgeInsets.symmetric(horizontal: 5.0),
-        // decoration: BoxDecoration(
-        //     color: Theme.of(context).scaffoldBackgroundColor,
-        //     borderRadius: BorderRadius.circular(20.0)),
-        // border:
-        //     Border.all(color: Theme.of(context).primaryColor, width: 1)),
-
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

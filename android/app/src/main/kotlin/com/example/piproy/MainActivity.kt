@@ -78,15 +78,24 @@ class MainActivity: FlutterActivity() {
                   //   // result.success(resultado)
                  
                   // }
-                  if (call.method == "wifi") {
+                  if (call.method == "wifion") {
                     
-                    val res:Boolean = getWifi()
+                    val res:Boolean = getWifiOn()
                     
                       result.success(res)
   
                   
     
                 }
+                if (call.method == "wifioncon") {
+                    
+                  val res:Boolean = getWifiOnCon()
+                  
+                    result.success(res)
+
+                
+  
+              }
                 if (call.method == "geolocalizacion") {
                     
                   val res:Boolean = getLocalizacion()
@@ -202,7 +211,7 @@ class MainActivity: FlutterActivity() {
         
               return true
             }
-            private fun getWifi(): Boolean{
+            private fun getWifiOn(): Boolean{
             
      
 
@@ -226,6 +235,30 @@ class MainActivity: FlutterActivity() {
                 return false
               }
           }    
+          private fun getWifiOnCon(): Boolean{
+            
+     
+
+            val connectivityManager = this.getSystemService(android.content.Context.CONNECTIVITY_SERVICE)
+                as ConnectivityManager
+
+            if (VERSION.SDK_INT >=VERSION_CODES.M) {
+                    val networkCapabilities = connectivityManager.activeNetwork ?: return false
+                    val activeNetwork = connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+                return when {
+
+                // activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                //  activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) ||
+          activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+          
+                  else -> false
+                 }
+               }
+           else {
+              return false
+            }
+        }    
           private fun onoffWifi(): Boolean{
          
      

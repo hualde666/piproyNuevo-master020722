@@ -63,7 +63,7 @@ packages:
       name: contacts_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.6"
+    version: "0.6.3"
   crypto:
     dependency: transitive
     description:
@@ -176,7 +176,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.4"
+    version: "0.13.5"
   http_parser:
     dependency: transitive
     description:
@@ -374,12 +374,12 @@ packages:
     source: hosted
     version: "6.0.0"
   quiver:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.5"
+    version: "3.1.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -573,7 +573,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.6"
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:

@@ -58,22 +58,22 @@ Widget conteinerIcon(
 
       widget = dispLinterna(context, prendida, nuevoIcon);
       break;
-    case 'whatsapp':
-      widget = Container(
-          height: 60,
-          width: 60,
-          decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(
-                  color: Theme.of(context).primaryColor, width: 0.8)),
-          child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: Image(
-                  image: AssetImage('assets/what.png'),
-                  height: 60,
-                  width: 60,
-                  fit: BoxFit.fill)));
+      // case 'whatsapp':
+      //   widget = Container(
+      //       height: 60,
+      //       width: 60,
+      //       decoration: BoxDecoration(
+      //           color: Theme.of(context).backgroundColor,
+      //           borderRadius: BorderRadius.circular(25),
+      //           border: Border.all(
+      //               color: Theme.of(context).primaryColor, width: 0.8)),
+      //       child: ClipRRect(
+      //           borderRadius: BorderRadius.circular(25),
+      //           child: Image(
+      //               image: AssetImage('assets/what.png'),
+      //               height: 60,
+      //               width: 60,
+      //               fit: BoxFit.fill)));
 
       break;
 

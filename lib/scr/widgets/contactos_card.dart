@@ -131,13 +131,40 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
         ),
         Text(
           'Llamar',
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
         )
       ],
     ),
     SizedBox(
       width: 10,
     ),
+    // Column(
+    //   children: [
+    //     Container(
+    //       height: 75,
+    //       width: 75,
+    //       margin: EdgeInsets.only(top: 10),
+    //       decoration: BoxDecoration(
+    //         borderRadius: BorderRadius.circular(80),
+    //         //color: Colors.black,
+    //       ),
+    //       child: conteinerIcon(
+    //           context,
+    //           Icon(
+    //             Icons.call,
+    //             size: 50.0,
+    //             // color: Colors.white,
+    //           ),
+    //           'whatsapp',
+    //           contacto),
+    //     ),
+    //     //  Divider(),
+    //     Text(
+    //       'Whatsapp',
+    //       style: TextStyle(fontSize: 15),
+    //     )
+    //   ],
+    // ),
     Column(
       children: [
         Container(
@@ -146,22 +173,20 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80),
-            //color: Colors.black,
+            //    color: Colors.black,
           ),
           child: conteinerIcon(
               context,
               Icon(
-                Icons.call,
-                size: 50.0,
-                // color: Colors.white,
+                Icons.whatsapp_rounded,
+                size: 55.0,
               ),
               'whatsapp',
               contacto),
         ),
-        //  Divider(),
         Text(
           'Whatsapp',
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
         )
       ],
     ),
@@ -183,7 +208,7 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
         ),
         Text(
           'Mensajes',
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
         )
       ],
     ),
@@ -211,7 +236,7 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
         ),
         Text(
           'Datos',
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
         )
       ],
     ),

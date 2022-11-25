@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180068387188",
+    "project_id": "vitalfon",
+    "storage_bucket": "vitalfon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180068387188:android:6fbe7842e3e364421f8421",
+        "android_client_info": {
+          "package_name": "com.piproy2.vitalfon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180068387188-cp8g12ppnn07c8pa3gvr1bvbpdvt5kp1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgspCnCy4AHmovXWApF39rImFrmbjCDiQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180068387188-cp8g12ppnn07c8pa3gvr1bvbpdvt5kp1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
