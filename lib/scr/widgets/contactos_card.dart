@@ -178,7 +178,7 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
           child: conteinerIcon(
               context,
               Icon(
-                Icons.whatsapp_rounded,
+                Icons.circle_outlined,
                 size: 55.0,
               ),
               'whatsapp',
@@ -500,7 +500,6 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                     eliminarContactoGrupo(context, grupo, contacto);
                   }
                   // eliminar contacto del grupo
-
                 } else {
                   // eliminar contacto menu principal
                   eliminarContactoMP(context, tipo + contacto.nombre);
