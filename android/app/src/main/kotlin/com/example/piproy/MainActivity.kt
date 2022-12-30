@@ -56,6 +56,7 @@ class MainActivity: FlutterActivity() {
                    result.success(resultado)
                  
                   }
+
                   if (call.method == "permisocall") {
                  val resultado:Boolean = permisoCall()
                   result.success(resultado)
@@ -73,11 +74,7 @@ class MainActivity: FlutterActivity() {
                     result.success(resultado)
                  
                   }
-                  // if (call.method == "aplicaciones") {
-                  //   // val resultado = getListaApi()
-                  //   // result.success(resultado)
-                 
-                  // }
+              
                   if (call.method == "wifion") {
                     
                     val res:Boolean = getWifiOn()
@@ -157,7 +154,9 @@ class MainActivity: FlutterActivity() {
               //   List<PackageInfo> packs = context.getPackageManager().getInstalledPackages(0);
               //   return packs
               // }
-        
+//
+//        funciones
+//        
            private fun getAndroidVersion(): String {
                  val  sdkVersion: Int
                  val release: String
@@ -280,6 +279,7 @@ class MainActivity: FlutterActivity() {
          
             return true
           }    
+          // determina si GPS esta on o off
           private fun getGps(): Boolean{
             var locationManager =
             context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -290,6 +290,7 @@ class MainActivity: FlutterActivity() {
               return false
             
         } 
+        // prende o apaga gps... no funciona
         private fun onoffGps(onoff: Boolean) {
   
 

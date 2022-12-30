@@ -138,33 +138,6 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
     SizedBox(
       width: 10,
     ),
-    // Column(
-    //   children: [
-    //     Container(
-    //       height: 75,
-    //       width: 75,
-    //       margin: EdgeInsets.only(top: 10),
-    //       decoration: BoxDecoration(
-    //         borderRadius: BorderRadius.circular(80),
-    //         //color: Colors.black,
-    //       ),
-    //       child: conteinerIcon(
-    //           context,
-    //           Icon(
-    //             Icons.call,
-    //             size: 50.0,
-    //             // color: Colors.white,
-    //           ),
-    //           'whatsapp',
-    //           contacto),
-    //     ),
-    //     //  Divider(),
-    //     Text(
-    //       'Whatsapp',
-    //       style: TextStyle(fontSize: 15),
-    //     )
-    //   ],
-    // ),
     Column(
       children: [
         Container(
