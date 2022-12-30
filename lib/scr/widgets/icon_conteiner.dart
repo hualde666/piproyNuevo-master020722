@@ -63,7 +63,7 @@ Widget conteinerIcon(
           height: 70,
           width: 70,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).backgroundColor,
             boxShadow: [
               BoxShadow(
                 blurRadius: 1,
@@ -74,7 +74,7 @@ Widget conteinerIcon(
             borderRadius: BorderRadius.circular(80),
             border: pref.paleta == '4'
                 ? Border.all(color: Theme.of(context).primaryColor)
-                : Border.all(color: Theme.of(context).colorScheme.background),
+                : Border.all(color: Theme.of(context).backgroundColor),
           ),
           child: Image(
               image: AssetImage('assets/what.png'),
@@ -91,7 +91,7 @@ Widget conteinerIcon(
           width: 70.0,
           height: 70.0,
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).backgroundColor,
             boxShadow: [
               BoxShadow(
                 blurRadius: 1,
@@ -102,7 +102,7 @@ Widget conteinerIcon(
             borderRadius: BorderRadius.circular(80),
             border: pref.paleta == '4'
                 ? Border.all(color: Theme.of(context).primaryColor)
-                : Border.all(color: Theme.of(context).colorScheme.background),
+                : Border.all(color: Theme.of(context).backgroundColor),
           ),
           // border: Border.all(
           //     color: Theme.of(context).primaryColor, width: 0.8)),
@@ -226,7 +226,7 @@ funcionIcon(BuildContext context, String tarea, ContactoDatos contacto,
 
 Widget dispositivo(BuildContext context, bool activo, IconData icon) {
   final Color color =
-      activo ? Theme.of(context).colorScheme.background : Colors.red[900];
+      activo ? Theme.of(context).backgroundColor : Colors.red[900];
 
   return Center(
       child: Container(
@@ -246,7 +246,7 @@ Widget dispositivo(BuildContext context, bool activo, IconData icon) {
 
 Widget dispLinterna(BuildContext context, bool activo, IconData icon) {
   final Color color =
-      activo ? Colors.yellow : Theme.of(context).colorScheme.background;
+      activo ? Colors.yellow : Theme.of(context).backgroundColor;
   final pref = Provider.of<Preferencias>(context);
   return Center(
       child: Container(
@@ -265,7 +265,7 @@ Widget dispLinterna(BuildContext context, bool activo, IconData icon) {
       borderRadius: BorderRadius.circular(80),
       border: pref.paleta == '4'
           ? Border.all(color: Theme.of(context).primaryColor)
-          : Border.all(color: Theme.of(context).colorScheme.background),
+          : Border.all(color: Theme.of(context).backgroundColor),
     ),
     //    border: Border.all(color: Theme.of(context).primaryColor, width: 0.5)),
     child: Center(
@@ -298,7 +298,7 @@ class _PilaState extends State<Pila> {
     final celProvider = Provider.of<EstadoProvider>(context);
     nivelBateria = celProvider.nivelBateria;
     color = nivelBateria > 49
-        ? Theme.of(context).colorScheme.background
+        ? Theme.of(context).backgroundColor
         : celProvider.bateriaColor;
     cargando = celProvider.cargandoBateria;
 
