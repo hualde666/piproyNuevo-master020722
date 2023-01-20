@@ -84,7 +84,7 @@ class ContactsGruposPage extends StatelessWidget {
           margin: EdgeInsets.symmetric(vertical: 3, horizontal: 4.0),
           height: 70,
           decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
+              color: pref.backgroundColor,
               borderRadius: BorderRadius.circular(20.0),
               border: Border.all(color: Theme.of(context).primaryColor)),
           child: grupo != 'Todos' && pref.modoConfig

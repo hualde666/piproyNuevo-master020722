@@ -9,6 +9,8 @@ import 'package:piproy/scr/providers/db_provider.dart';
 import 'package:piproy/scr/widgets/tres_botones_header.dart';
 import 'package:provider/provider.dart';
 
+import '../providers/usuario_pref.dart';
+
 class SelectContactsPage extends StatefulWidget {
   @override
   State<SelectContactsPage> createState() => _SelectContactsPageState();
@@ -132,7 +134,6 @@ class _SelectContactsPageState extends State<SelectContactsPage> {
                         //         .requestFocus(new FocusNode());
                         //   },
                         //   child:
-
                       } else {
                         hayBusqueda = false;
                         return Container(
@@ -260,6 +261,7 @@ class Contacto extends StatefulWidget {
 class _ContactoState extends State<Contacto> {
   @override
   Widget build(BuildContext context) {
+    final pref = Provider.of<Preferencias>(context);
     return GestureDetector(
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
@@ -268,10 +270,8 @@ class _ContactoState extends State<Contacto> {
         decoration: BoxDecoration(
             color: widget.apiProvider.categoryContact[widget.grupo]
                     .contains(widget.contactoSelec)
-                ? Theme.of(context).backgroundColor
-                : Theme.of(context)
-                    .backgroundColor
-                    .withOpacity(0.3), //Colors.grey[700],
+                ? pref.backgroundColor
+                : pref.backgroundColor.withOpacity(0.3), //Colors.grey[700],
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(color: Theme.of(context).primaryColor)),
         child: Center(

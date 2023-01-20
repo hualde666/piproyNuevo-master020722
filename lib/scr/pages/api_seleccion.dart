@@ -173,9 +173,8 @@ class _WidgetApiState extends State<WidgetApi> {
   @override
   Widget build(BuildContext context) {
     final selecionada = widget.listaNueva.contains(widget.api);
-    // final pref = Provider.of<Preferencias>(context, listen: false);
-    Color color =
-        selecionada ? Theme.of(context).backgroundColor : Colors.grey[700];
+    final pref = Provider.of<Preferencias>(context, listen: false);
+    Color color = selecionada ? pref.backgroundColor : Colors.grey[700];
     return GestureDetector(
       onTap: () {
         if (widget.api.packageName != "") {

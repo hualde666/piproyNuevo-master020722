@@ -109,6 +109,7 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
 }
 
 Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
+  final pref = Provider.of<Preferencias>(context);
   final List<Widget> _listaWidget = [
     Column(
       children: [
@@ -146,6 +147,7 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
           margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(80),
+
             //    color: Colors.black,
           ),
           child: conteinerIcon(
@@ -245,11 +247,6 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
               style: TextStyle(
                 fontSize: 25,
               )),
-          //                 style: TextStyle(
-          //                   fontSize: 25,
-          //                 )),
-          // shape: CircleBorder(),
-
           actionsAlignment: MainAxisAlignment.spaceAround,
           actions: [
             Container(
@@ -391,11 +388,7 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
             style: TextStyle(
               fontSize: 25,
             )),
-        // shape: CircleBorder(),
-        // elevation: 14.0,
-        //actionsPadding: EdgeInsets.symmetric(horizontal: 30.0),
         actionsAlignment: MainAxisAlignment.spaceAround,
-
         actions: [
           Container(
             height: 50,
@@ -430,7 +423,7 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
   return Container(
       height: 90,
       decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: pref.backgroundColor,
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(color: Theme.of(context).primaryColor)),
       width: double.infinity,

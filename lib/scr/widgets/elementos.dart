@@ -48,7 +48,7 @@ Widget elementos(BuildContext context, Widget widget, double altura,
           color: // ruta == 'contactos' || tipo.contains('MPA')
               /** es un contacto o grupo de contacto */
               // ? Colors.green
-              Theme.of(context).backgroundColor,
+              pref.backgroundColor,
           borderRadius: BorderRadius.circular(20.0),
           border: Border.all(color: Theme.of(context).primaryColor)),
     ),

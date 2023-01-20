@@ -57,10 +57,10 @@ Widget botonBackHeader(BuildContext context, String pagina) {
             ),
           ],
           color: //pref.paleta == '4'
-              Theme.of(context).backgroundColor,
+              pref.backgroundColor,
           border: pref.paleta == '4'
               ? Border.all(color: Theme.of(context).primaryColor)
-              : Border.all(color: Theme.of(context).backgroundColor),
+              : Border.all(color: pref.backgroundColor),
           //  : Colors.green[900],
           borderRadius: BorderRadius.all(Radius.circular(100))),
       //     border:

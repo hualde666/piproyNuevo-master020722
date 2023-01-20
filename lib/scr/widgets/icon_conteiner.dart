@@ -63,7 +63,7 @@ Widget conteinerIcon(
           height: 70,
           width: 70,
           decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
+            color: pref.backgroundColor,
             boxShadow: [
               BoxShadow(
                 blurRadius: 1,
@@ -74,7 +74,7 @@ Widget conteinerIcon(
             borderRadius: BorderRadius.circular(80),
             border: pref.paleta == '4'
                 ? Border.all(color: Theme.of(context).primaryColor)
-                : Border.all(color: Theme.of(context).backgroundColor),
+                : Border.all(color: pref.backgroundColor),
           ),
           child: Image(
               image: AssetImage('assets/what.png'),
@@ -91,7 +91,7 @@ Widget conteinerIcon(
           width: 70.0,
           height: 70.0,
           decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
+            color: pref.backgroundColor,
             boxShadow: [
               BoxShadow(
                 blurRadius: 1,
@@ -100,12 +100,7 @@ Widget conteinerIcon(
               ),
             ],
             borderRadius: BorderRadius.circular(80),
-            border: pref.paleta == '4'
-                ? Border.all(color: Theme.of(context).primaryColor)
-                : Border.all(color: Theme.of(context).backgroundColor),
           ),
-          // border: Border.all(
-          //     color: Theme.of(context).primaryColor, width: 0.8)),
           child: icon,
         ));
         break;
@@ -225,8 +220,8 @@ funcionIcon(BuildContext context, String tarea, ContactoDatos contacto,
 }
 
 Widget dispositivo(BuildContext context, bool activo, IconData icon) {
-  final Color color =
-      activo ? Theme.of(context).backgroundColor : Colors.red[900];
+  final pref = Provider.of<Preferencias>(context);
+  final Color color = activo ? pref.backgroundColor : Colors.red[900];
 
   return Center(
       child: Container(
@@ -235,7 +230,10 @@ Widget dispositivo(BuildContext context, bool activo, IconData icon) {
     decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(80),
-        border: Border.all(color: Theme.of(context).primaryColor, width: 0.5)),
+        border: pref.paleta == '4'
+            ? Border.all(color: Theme.of(context).primaryColor)
+            : Border.all(color: pref.backgroundColor)),
+    // border: Border.all(color: Theme.of(context).primaryColor, width: 0.5)),
     child: Center(
         child: Icon(
       icon,
@@ -245,9 +243,8 @@ Widget dispositivo(BuildContext context, bool activo, IconData icon) {
 }
 
 Widget dispLinterna(BuildContext context, bool activo, IconData icon) {
-  final Color color =
-      activo ? Colors.yellow : Theme.of(context).backgroundColor;
   final pref = Provider.of<Preferencias>(context);
+  final Color color = activo ? Colors.yellow : pref.backgroundColor;
   return Center(
       child: Container(
     width: 70.0,
@@ -265,7 +262,7 @@ Widget dispLinterna(BuildContext context, bool activo, IconData icon) {
       borderRadius: BorderRadius.circular(80),
       border: pref.paleta == '4'
           ? Border.all(color: Theme.of(context).primaryColor)
-          : Border.all(color: Theme.of(context).backgroundColor),
+          : Border.all(color: pref.backgroundColor),
     ),
     //    border: Border.all(color: Theme.of(context).primaryColor, width: 0.5)),
     child: Center(

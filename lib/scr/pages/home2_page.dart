@@ -549,7 +549,7 @@ class ConfigWidget extends StatelessWidget {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
+                  color: pref.backgroundColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black,
@@ -561,7 +561,7 @@ class ConfigWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100.0),
                   border: pref.paleta == '4'
                       ? Border.all(color: Theme.of(context).primaryColor)
-                      : Border.all(color: Theme.of(context).backgroundColor),
+                      : Border.all(color: pref.backgroundColor),
                 ),
                 // border: Border.all(
                 //     width: 0.5, color: Theme.of(context).primaryColor)),
@@ -694,60 +694,6 @@ Widget elementoApi2(BuildContext context, Application api) {
         ],
       ),
     ),
-
-    //  Container(
-    //     //color: Colors.yellowAccent,
-    //     width: size / 2,
-    //     child: Column(
-    //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: [
-    //           // height: 145,
-    //           //width: 120,
-    //           GestureDetector(
-    //               onTap: () {
-    //                 eliminarApiMP(
-    //                     context, 'MPD' + api.packageName, api.appName);
-    //               },
-    //               child: pref.modoConfig
-    //                   ? Container(
-    //                       // width: 20,
-    //                       //height: 2,
-    //                       child: Center(
-    //                         child: Icon(
-    //                           Icons.close,
-    //                           size: 30,
-    //                           color: Colors.red,
-    //                         ),
-    //                       ),
-    //                     )
-    //                   : Container()),
-
-    //           SizedBox(
-    //             height: 5,
-    //           ),
-    //           Image.memory(
-    //             (api as ApplicationWithIcon).icon,
-    //             width: 90,
-    //           ),
-    //           SizedBox(
-    //             height: 2,
-    //           ),
-
-    //           Text(
-    //             api.appName,
-    //             textAlign: TextAlign.center,
-    //             overflow: TextOverflow.ellipsis,
-    //             style: TextStyle(
-    //               fontSize: size <= 320 ? 15 : 20,
-    //               color: Theme.of(context).primaryColor,
-    //               // color: pref.paleta == '2' || pref.paleta == '5'
-    //               //     ? Colors.black
-    //               //     : Colors.white,
-    //             ),
-    //           )
-    //         ]),
-    //         ),
   );
 }
 

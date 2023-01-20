@@ -27,6 +27,7 @@ class Preferencias extends ChangeNotifier {
   String _telefonoEmergencia = "";
   bool _instalado = false;
   bool _modoConfig = true;
+  Color _backgroundColor = Color.fromARGB(255, 143, 185, 168);
 
   init() async {
     this._pref = await SharedPreferences.getInstance();
@@ -45,6 +46,7 @@ class Preferencias extends ChangeNotifier {
     _instalado = _pref.getBool('instalado') ?? false;
     _modoConfig = _pref.getBool('modoconfig') ?? true;
     _telefonoEmergencia = _pref.getString('telefonoEmergencia') ?? "";
+    cambioBackground();
     if (!_iLinterna && !_iMensaje && !_iReloj && !_iTelefono) {
       this._menuHorizontal = false;
     } else {
@@ -67,6 +69,10 @@ class Preferencias extends ChangeNotifier {
     return this._paleta;
   }
 
+  Color get backgroundColor {
+    return this._backgroundColor;
+  }
+
   String get telefonoEmergencia {
     return this._telefonoEmergencia;
   }
@@ -84,7 +90,28 @@ class Preferencias extends ChangeNotifier {
     _paleta = nuevaPaleta;
 
     _pref.setString('paleta', nuevaPaleta);
+    cambioBackground();
     notifyListeners();
+  }
+
+  void cambioBackground() {
+    switch (_paleta) {
+      case '1':
+        _backgroundColor = Color.fromARGB(255, 3, 51, 90);
+        break;
+      case '2':
+        _backgroundColor = Color.fromARGB(255, 143, 185, 168);
+        break;
+      case '3':
+        _backgroundColor = Color.fromARGB(255, 7, 98, 89);
+        break;
+      case '4':
+        _backgroundColor = Colors.black;
+        break;
+      case '5':
+        _backgroundColor = Colors.white;
+        break;
+    }
   }
 
   set telefonoEmergencia(String nuevoTelefono) {
