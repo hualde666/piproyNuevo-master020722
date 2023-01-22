@@ -17,8 +17,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/usuario_pref.dart';
 
-Widget conteinerIcon(
-    BuildContext context, Icon icon, String tarea, ContactoDatos contacto) {
+Widget conteinerIcon(BuildContext context, Icon icon, String tarea,
+    ContactoDatos contacto, double ancho) {
   final celProvider = Provider.of<EstadoProvider>(context);
   final pref = Provider.of<Preferencias>(context);
   bool activoGps = celProvider.conexionGps;
@@ -36,20 +36,20 @@ Widget conteinerIcon(
     case 'wifi':
       nuevoIcon = activoWifi ? Icons.wifi_rounded : Icons.wifi_off_rounded;
 
-      widget = dispositivo(context, activoWifi, nuevoIcon);
+      widget = dispositivo(context, activoWifi, nuevoIcon, 70);
       break;
 
     case 'gps':
       nuevoIcon = activoGps ? Icons.gps_fixed : Icons.gps_off_rounded;
 
-      widget = dispositivo(context, activoGps, nuevoIcon);
+      widget = dispositivo(context, activoGps, nuevoIcon, 70);
       break;
     case 'linea':
       nuevoIcon = activoDatos
           ? Icons.signal_cellular_alt_rounded
           : Icons.signal_cellular_off_outlined;
 
-      widget = dispositivo(context, activoDatos, nuevoIcon);
+      widget = dispositivo(context, activoDatos, nuevoIcon, 70);
       break;
     case 'linterna':
       prendida = celProvider.linterna;
@@ -60,8 +60,8 @@ Widget conteinerIcon(
       break;
     case 'whatsapp':
       widget = Container(
-          height: 70,
-          width: 70,
+          height: ancho,
+          width: ancho,
           decoration: BoxDecoration(
             color: pref.backgroundColor,
             boxShadow: [
@@ -88,8 +88,8 @@ Widget conteinerIcon(
       {
         widget = Center(
             child: Container(
-          width: 70.0,
-          height: 70.0,
+          width: ancho,
+          height: ancho,
           decoration: BoxDecoration(
             color: pref.backgroundColor,
             boxShadow: [
@@ -219,14 +219,15 @@ funcionIcon(BuildContext context, String tarea, ContactoDatos contacto,
   }
 }
 
-Widget dispositivo(BuildContext context, bool activo, IconData icon) {
+Widget dispositivo(
+    BuildContext context, bool activo, IconData icon, double ancho) {
   final pref = Provider.of<Preferencias>(context);
   final Color color = activo ? pref.backgroundColor : Colors.red[900];
 
   return Center(
       child: Container(
-    width: 70.0,
-    height: 70.0,
+    width: ancho,
+    height: ancho,
     decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(80),

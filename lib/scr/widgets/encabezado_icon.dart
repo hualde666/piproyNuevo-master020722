@@ -74,7 +74,8 @@ Widget widgetHorizontal(BuildContext context, IconData icon, String titulo) {
               size: 40.0,
             ),
             titulo,
-            null),
+            null,
+            70),
       ),
       Text(
         titulo,

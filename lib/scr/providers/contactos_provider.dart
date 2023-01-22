@@ -42,6 +42,7 @@ class ContactosProvider with ChangeNotifier {
     String _nombre = contact.displayName;
     String _telefono = "";
     String _whatsapp = "";
+
     if (contact.phones.isNotEmpty) {
       _telefono = contact.phones.elementAt(0).value;
       // Item item = contact.phones.firstWhere(
@@ -52,7 +53,11 @@ class ContactosProvider with ChangeNotifier {
       // }
     }
     final _contacto = new ContactoDatos(
-        nombre: _nombre, telefono: _telefono, whatsapptel: _whatsapp);
+        nombre: _nombre,
+        telefono: _telefono,
+        whatsapptel: _whatsapp,
+        avatar: contact.avatar,
+        iniciales: contact.initials());
 
     return _contacto;
   }

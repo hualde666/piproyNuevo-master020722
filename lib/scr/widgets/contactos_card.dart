@@ -43,190 +43,172 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
     final celProvider = Provider.of<EstadoProvider>(context, listen: false);
 
     bool activoDatos = celProvider.conexionDatos;
-    return widget.tipo != 'MPA' && widget.tipo != 'MPB'
-        ? GestureDetector(
-            child: Container(
-              height: oneTap ? 225 : 92,
-              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+    return GestureDetector(
+      child: Container(
+        //   color: Colors.black,
+        height: oneTap ? 420 : 150,
+        width: double.infinity,
+        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              //  color: Colors.pink,
+              height: 140,
+              child: Stack(
                 children: [
-                  _nombreContacto(context, widget.contacto, grupo,
-                      (widget.envio), widget.eliminar, widget.tipo),
-                  oneTap
-                      ? _botonesContactos(context, widget.contacto)
-                      : Container(),
+                  Align(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    child: _nombreContacto(context, widget.contacto, grupo,
+                        (widget.envio), widget.eliminar, widget.tipo),
+                  ),
+                  Align(
+                      alignment: AlignmentDirectional.topCenter,
+                      child: _avatar(context, widget.contacto)),
                 ],
               ),
-              decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(
-                      color: Theme.of(context).primaryColor, width: 1.0)),
             ),
-            onTap: () {
-              if (widget.tipo != 'MPA' && widget.tipo != 'MPB') {
-                oneTap = !oneTap;
-                setState(() {});
-              }
+            oneTap ? _botonesContactos(context, widget.contacto) : Container(),
+          ],
+        ),
+      ),
+      onTap: () async {
+        if (widget.tipo != 'MPA' && widget.tipo != 'MPB') {
+          oneTap = !oneTap;
+          setState(() {});
+        } else {
+          if (widget.tipo == 'MPA') {
+            if (activoDatos) {
+              final ContactoDatos _contacto = await contactosProvaider
+                  .obtenerContacto(widget.contacto.nombre);
 
-              // Navigator.pushNamed(context, 'editarContacto', arguments: contacto);
-            },
-          )
-        : GestureDetector(
-            child: Container(
-              height: 92,
-              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
-              child:
-                  //_avatar(contacto),
-                  _nombreContacto(context, widget.contacto, grupo, widget.envio,
-                      widget.eliminar, widget.tipo),
-            ),
-            onTap: () async {
-              if (widget.tipo == 'MPA') {
-                if (activoDatos) {
-                  final ContactoDatos _contacto = await contactosProvaider
-                      .obtenerContacto(widget.contacto.nombre);
-
-                  /// *** llamada desde el contacto
-                  llamar(_contacto.telefono);
-                }
-                /* llamar por telefono*/
-              } else if (widget.tipo == 'MPB') {
-                // ** ir a contacto Whastappp
-                final ContactoDatos _contacto = await contactosProvaider
-                    .obtenerContacto(widget.contacto.nombre);
-                if (_contacto.telefono != "") {
-                  abrirWhatsapp(_contacto.telefono, '');
-                }
-              }
-              // oneTap = !oneTap;
-              // setState(() {});
-              // Navigator.pushNamed(context, 'editarContacto', arguments: contacto);
-            },
-          );
+              /// *** llamada desde el contacto
+              llamar(_contacto.telefono);
+            }
+            /* llamar por telefono*/
+          } else if (widget.tipo == 'MPB') {
+            // ** ir a contacto Whastappp
+            final ContactoDatos _contacto = await contactosProvaider
+                .obtenerContacto(widget.contacto.nombre);
+            if (_contacto.telefono != "") {
+              abrirWhatsapp(_contacto.telefono, '');
+            }
+          }
+        }
+      },
+    );
   }
 }
 
 Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
-  final pref = Provider.of<Preferencias>(context);
-  final List<Widget> _listaWidget = [
-    Column(
-      children: [
-        Container(
-          height: 75,
-          width: 75,
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(80),
-            //    color: Colors.black,
-          ),
-          child: conteinerIcon(
-              context,
-              Icon(
-                Icons.call,
-                size: 50.0,
-              ),
-              'llamada',
-              contacto),
-        ),
-        Text(
-          'Llamar',
-          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
-        )
-      ],
-    ),
-    SizedBox(
-      width: 10,
-    ),
-    Column(
-      children: [
-        Container(
-          height: 75,
-          width: 75,
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(80),
-
-            //    color: Colors.black,
-          ),
-          child: conteinerIcon(
-              context,
-              Icon(
-                Icons.circle_outlined,
-                size: 55.0,
-              ),
-              'whatsapp',
-              contacto),
-        ),
-        Text(
-          'Whatsapp',
-          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
-        )
-      ],
-    ),
-    SizedBox(
-      width: 10,
-    ),
-    Column(
-      children: [
-        Container(
-          height: 75,
-          width: 75,
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(80),
-            // color: Colors.black,
-          ),
-          child: conteinerIcon(context, Icon(Icons.message_rounded, size: 50.0),
-              'mensajeC', contacto),
-        ),
-        Text(
-          'Mensajes',
-          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
-        )
-      ],
-    ),
-    SizedBox(
-      width: 10,
-    ),
-    Column(
-      children: [
-        Container(
-          height: 75,
-          width: 75,
-          margin: EdgeInsets.only(top: 10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(80),
-            // color: Colors.black,
-          ),
-          child: conteinerIcon(
-              context,
-              Icon(
-                Icons.search,
-                size: 50.0,
-              ),
-              'editar',
-              contacto),
-        ),
-        Text(
-          'Datos',
-          style: TextStyle(fontSize: 15, color: Theme.of(context).primaryColor),
-        )
-      ],
-    ),
-  ];
-
   return Container(
-    height: 115.0,
-    width: 330,
-    child: ListView.builder(
-      // controller: PageController(viewportFraction: 0.1),
-      scrollDirection: Axis.horizontal,
-      itemCount: _listaWidget.length,
-      itemBuilder: (context, i) => _listaWidget[i],
-    ),
+      //  height: 220.0,
+      width: 330,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              botonContacto(
+                context,
+                contacto,
+                'llamar',
+                'Llamar',
+                Icons.call,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              botonContacto(
+                context,
+                contacto,
+                'whatsapp',
+                'Whatsapp',
+                Icons.circle_outlined,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              botonContacto(
+                context,
+                contacto,
+                'mensajeC',
+                'Mensajes',
+                Icons.message_rounded,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              botonContacto(
+                context,
+                contacto,
+                'editar',
+                'Datos',
+                Icons.search,
+              ),
+            ],
+          )
+        ],
+      ));
+}
+
+Column botonContacto(BuildContext context, ContactoDatos contacto,
+    String accion, String texto, IconData icon) {
+  final pref = Provider.of<Preferencias>(context);
+  return Column(
+    children: [
+      Container(
+        height: 100,
+        width: 100,
+        margin: EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(80),
+          color: pref.backgroundColor,
+        ),
+        child: conteinerIcon(
+            context,
+            Icon(
+              icon,
+              size: 50.0,
+            ),
+            accion,
+            contacto,
+            100),
+      ),
+      Text(
+        texto,
+        style: TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
+      )
+    ],
   );
+}
+
+Widget _avatar(BuildContext context, ContactoDatos contacto) {
+  final pref = Provider.of<Preferencias>(context);
+  if (contacto.avatar.isEmpty) {
+    return Container(
+      padding: EdgeInsets.only(top: 5),
+      child: CircleAvatar(
+          maxRadius: 40,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          child: Text(
+            contacto.iniciales,
+            style:
+                TextStyle(fontSize: 30, color: Theme.of(context).primaryColor),
+          )),
+    );
+  } else {
+    return Container(
+      padding: EdgeInsets.only(top: 5),
+      child: CircleAvatar(
+        maxRadius: 40,
+        //backgroundColor: Colors.yellow,
+        backgroundImage: MemoryImage(contacto.avatar),
+      ),
+    );
+  }
 }
 
 Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
@@ -421,7 +403,8 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
   }
 
   return Container(
-      height: 90,
+      height: 210,
+      padding: EdgeInsets.only(top: 70),
       decoration: BoxDecoration(
           color: pref.backgroundColor,
           borderRadius: BorderRadius.circular(15.0),

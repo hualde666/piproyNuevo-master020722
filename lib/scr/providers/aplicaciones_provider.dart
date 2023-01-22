@@ -282,7 +282,12 @@ class AplicacionesProvider with ChangeNotifier {
             }
           }
           final _contacto = new ContactoDatos(
-              nombre: _nombre, telefono: _telefono, whatsapptel: _whatsapp);
+            nombre: _nombre,
+            telefono: _telefono,
+            whatsapptel: _whatsapp,
+            iniciales: lista[i].initials(),
+            avatar: lista[i].avatar,
+          );
           // categoryContact['Todos'].add((_contacto));
           lista2.add(_contacto);
         }
