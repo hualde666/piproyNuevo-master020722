@@ -40,7 +40,7 @@ dependencies:
 
   permission_handler: ^10.0.0
   #permission_handler: ^8.1.6
- # quiver: ^2.0.1-nullsafety
+  #quiver: ^3.2.1
 
  
   contacts_service: ^0.6.3
@@ -53,7 +53,7 @@ dependencies:
   #######
   flutter_sms: ^2.3.3
   #whatsapp_unilink: ^2.0.0
-  audioplayers: ^0.20.1
+  #audioplayers: ^0.20.1
   device_apps: ^2.2.0
  
   #android_intent:

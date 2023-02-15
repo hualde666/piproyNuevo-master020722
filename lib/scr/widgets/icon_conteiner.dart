@@ -99,6 +99,10 @@ Widget conteinerIcon(BuildContext context, Icon icon, String tarea,
                 offset: Offset(0, 3),
               ),
             ],
+            border: Border.all(
+                color: pref.paleta == '4'
+                    ? Theme.of(context).primaryColor
+                    : pref.backgroundColor),
             borderRadius: BorderRadius.circular(80),
           ),
           child: icon,

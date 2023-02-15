@@ -187,28 +187,33 @@ Column botonContacto(BuildContext context, ContactoDatos contacto,
 
 Widget _avatar(BuildContext context, ContactoDatos contacto) {
   final pref = Provider.of<Preferencias>(context);
-  if (contacto.avatar.isEmpty) {
-    return Container(
-      padding: EdgeInsets.only(top: 5),
-      child: CircleAvatar(
-          maxRadius: 40,
-          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          child: Text(
-            contacto.iniciales,
-            style:
-                TextStyle(fontSize: 30, color: Theme.of(context).primaryColor),
-          )),
-    );
-  } else {
-    return Container(
-      padding: EdgeInsets.only(top: 5),
-      child: CircleAvatar(
-        maxRadius: 40,
-        //backgroundColor: Colors.yellow,
-        backgroundImage: MemoryImage(contacto.avatar),
-      ),
-    );
-  }
+
+  return Container(
+    padding: EdgeInsets.only(top: 5),
+    child: Container(
+      decoration: BoxDecoration(
+          color: pref.backgroundColor,
+          borderRadius: BorderRadius.circular(100.0),
+          border: Border.all(color: Theme.of(context).primaryColor)),
+      child: contacto.avatar.isEmpty
+           // muestro iniciales
+          ? CircleAvatar(
+              maxRadius: 40,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              foregroundColor: Theme.of(context).primaryColor,
+              child: Text(
+                contacto.iniciales,
+                style: TextStyle(
+                    fontSize: 30, color: Theme.of(context).primaryColor),
+              ))
+            // muestro foto
+          : CircleAvatar(
+              maxRadius: 40,
+              //backgroundColor: Colors.yellow,
+              backgroundImage: MemoryImage(contacto.avatar),
+            ),
+    ),
+  );
 }
 
 Widget _nombreContacto(BuildContext context, ContactoDatos contacto,

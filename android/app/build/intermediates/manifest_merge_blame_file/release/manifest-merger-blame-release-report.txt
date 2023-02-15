@@ -1,0 +1,250 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.piproy2.vitalfon"
+4    android:versionCode="10"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.SEND_SMS" />
+11-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:52:4-66
+11-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:52:21-63
+12    <uses-permission android:name="android.permission.FLASHLIGHT" />
+12-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:54:5-69
+12-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:54:22-66
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:56:5-79
+13-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:56:22-76
+14    <uses-permission android:name="android.permission.READ_CONTACTS" />
+14-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:57:5-72
+14-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:57:22-69
+15    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+15-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:59:5-77
+15-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:59:22-74
+16    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+16-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:60:5-79
+16-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:60:22-76
+17
+18    <queries>
+18-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:61:5-82:11
+19
+20        <!-- If your app opens https URLs -->
+21        <intent>
+21-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:63:3-66:12
+22            <action android:name="android.intent.action.VIEW" />
+22-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:64:5-57
+22-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:64:13-54
+23
+24            <data android:scheme="https" />
+24-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:5-36
+24-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:11-33
+25        </intent>
+26        <!-- If your app makes calls -->
+27        <intent>
+27-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:68:3-71:12
+28            <action android:name="android.intent.action.DIAL" />
+28-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:69:5-57
+28-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:69:13-54
+29
+30            <data android:scheme="tel" />
+30-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:5-36
+30-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:11-33
+31        </intent>
+32        <!-- If your sends SMS messages -->
+33        <intent>
+33-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:73:3-76:12
+34            <action android:name="android.intent.action.SENDTO" />
+34-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:74:5-59
+34-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:74:13-56
+35
+36            <data android:scheme="smsto" />
+36-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:5-36
+36-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:11-33
+37        </intent>
+38        <!-- If your app sends emails -->
+39        <intent>
+39-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:78:3-81:12
+40            <action android:name="android.intent.action.SEND" />
+40-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:79:5-57
+40-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:79:13-54
+41
+42            <data android:mimeType="*/*" />
+42-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:5-36
+42-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:80:11-33
+43        </intent>
+44        <intent>
+44-->[:contacts_service] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\contacts_service-0.6.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-12:18
+45            <action android:name="android.accounts.AccountAuthenticator" />
+45-->[:contacts_service] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\contacts_service-0.6.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-76
+45-->[:contacts_service] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\contacts_service-0.6.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:21-73
+46        </intent> <!-- Allows the app to load an icon corresponding to the custom MIME type. -->
+47        <intent>
+47-->[:contacts_service] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\contacts_service-0.6.3\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:9-21:18
+48            <action android:name="android.intent.action.VIEW" />
+48-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:64:5-57
+48-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:64:13-54
+49
+50            <data
+50-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:5-36
+51                android:host="com.android.contacts"
+52                android:mimeType="vnd.android.cursor.item/*"
+52-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:80:11-33
+53                android:scheme="content" />
+53-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:65:11-33
+54        </intent>
+55    </queries>
+56
+57    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+57-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-81
+57-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:7:22-78
+58    <uses-permission android:name="android.permission.CALL_PHONE" />
+58-->[:flutter_phone_direct_caller] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_phone_direct_caller-2.1.1\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:9:5-69
+58-->[:flutter_phone_direct_caller] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_phone_direct_caller-2.1.1\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:9:22-66
+59
+60    <uses-feature
+60-->[:flutter_phone_direct_caller] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_phone_direct_caller-2.1.1\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:5-13:36
+61        android:name="android.hardware.telephony"
+61-->[:flutter_phone_direct_caller] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_phone_direct_caller-2.1.1\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:12:9-50
+62        android:required="false" />
+62-->[:flutter_phone_direct_caller] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\flutter_phone_direct_caller-2.1.1\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:13:9-33
+63
+64    <application
+64-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:3:4-50:19
+65        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+65-->[androidx.core:core:1.7.0] C:\Users\irene\.gradle\caches\transforms-3\e535a23401f98de0b9847625f69b848d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+66        android:icon="@mipmap/launcher_icon"
+66-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:5:9-45
+67        android:label="vitalfon" >
+67-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:4:9-33
+68
+69        <!--
+70              <meta-data android:name="com.google.android.geo.API_KEY"
+71               android:value="AIzaSyDCxqXm5MCzyPTyefAerOYPMlsJx1IjOtY"/>
+72        -->
+73        <activity
+73-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:8:9-44:20
+74            android:name="com.piproy2.vitalfon.MainActivity"
+74-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:9:13-41
+75            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|screenLayout|density|uiMode"
+75-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:12:13-153
+76            android:exported="true"
+76-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:14:13-36
+77            android:hardwareAccelerated="true"
+77-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:15:13-47
+78            android:launchMode="singleTop"
+78-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:10:13-43
+79            android:theme="@style/LaunchTheme"
+79-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:11:13-47
+80            android:windowSoftInputMode="adjustResize" >
+80-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:16:13-55
+81
+82            <!--
+83                 Specifies an Android theme to apply to this Activity as soon as
+84                 the Android process has started. This theme is visible to the user
+85                 while the Flutter UI initializes. After that, this theme continues
+86                 to determine the Window background behind the Flutter UI.
+87            -->
+88            <meta-data
+88-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:21:13-24:17
+89                android:name="io.flutter.embedding.android.NormalTheme"
+89-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:22:15-70
+90                android:resource="@style/NormalTheme" />
+90-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:23:15-52
+91            <!--
+92                 Displays an Android View that continues showing the launch screen
+93                 Drawable until Flutter paints its first frame, then this splash
+94                 screen fades out. A splash screen is useful to avoid any visual
+95                 gap between the end of Android's launch screen and the painting of
+96                 Flutter's first frame.
+97            -->
+98            <meta-data
+98-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:30:13-33:17
+99                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+99-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:31:15-79
+100                android:resource="@drawable/launch_background" />
+100-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:32:15-61
+101
+102            <intent-filter>
+102-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:34:13-41:29
+103                <action android:name="android.intent.action.MAIN" />
+103-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:35:18-69
+103-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:35:26-67
+104
+105                <category android:name="android.intent.category.LAUNCHER" />
+105-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:36:18-77
+105-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:36:28-75
+106                <!-- hace que la app sea launcher -->
+107                <category android:name="android.intent.category.HOME" />
+107-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:38:19-75
+107-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:38:29-72
+108                <category android:name="android.intent.category.DEFAULT" />
+108-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:39:18-77
+108-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:39:28-74
+109            </intent-filter>
+110        </activity>
+111        <!--
+112             Don't delete the meta-data below.
+113             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+114        -->
+115        <meta-data
+115-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:47:9-49:33
+116            android:name="flutterEmbedding"
+116-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:48:13-44
+117            android:value="2" />
+117-->C:\Documents\flutter\vitalfon\android\app\src\main\AndroidManifest.xml:49:13-30
+118
+119        <activity
+119-->[:url_launcher_android] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\url_launcher_android-6.0.22\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-11:74
+120            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+120-->[:url_launcher_android] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\url_launcher_android-6.0.22\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-74
+121            android:exported="false"
+121-->[:url_launcher_android] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\url_launcher_android-6.0.22\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:13-37
+122            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+122-->[:url_launcher_android] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\url_launcher_android-6.0.22\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-71
+123
+124        <service
+124-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:9-15:56
+125            android:name="com.lyokone.location.FlutterLocationService"
+125-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:12:13-71
+126            android:enabled="true"
+126-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:13:13-35
+127            android:exported="false"
+127-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-37
+128            android:foregroundServiceType="location" />
+128-->[:location] C:\src\flutter\.pub-cache\hosted\pub.dartlang.org\location-4.4.0\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:13-53
+129
+130        <uses-library
+130-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+131            android:name="androidx.window.extensions"
+131-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+132            android:required="false" />
+132-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+133        <uses-library
+133-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+134            android:name="androidx.window.sidecar"
+134-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+135            android:required="false" />
+135-->[androidx.window:window:1.0.0-beta04] C:\Users\irene\.gradle\caches\transforms-3\0d60d1f63a9ffed0355ab42bd2050880\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+136
+137        <activity
+137-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\54aa6188610056fb9dd8a18c3e3a4b75\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+138            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+138-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\54aa6188610056fb9dd8a18c3e3a4b75\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+139            android:exported="false"
+139-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\54aa6188610056fb9dd8a18c3e3a4b75\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+140            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+140-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\54aa6188610056fb9dd8a18c3e3a4b75\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+141
+142        <meta-data
+142-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\2d750667a74f288286ea992fd8f23d01\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
+143            android:name="com.google.android.gms.version"
+143-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\2d750667a74f288286ea992fd8f23d01\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
+144            android:value="@integer/google_play_services_version" />
+144-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\irene\.gradle\caches\transforms-3\2d750667a74f288286ea992fd8f23d01\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
+145    </application>
+146
+147</manifest>

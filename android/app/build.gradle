@@ -10,17 +10,19 @@ if (localPropertiesFile.exists()) {
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
-    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+    throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    // flutterVersionCode = '1'
+    flutterVersionCode = '2'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    //flutterVersionName = '1.0'
+     flutterVersionName = '1.1'
 }
 
 apply plugin: 'com.android.application'
@@ -39,17 +41,24 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-
+    compileOptions {
+      sourceCompatibility 1.8
+      targetCompatibility 1.8
+    }
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.piproy2.vitalfon"
+     
+        applicationId = "com.piproy2.vitalfon"
        // 4 01 2022 minSdkVersion 21
        // 4 01 2022 targetSdkVersion 30
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         //*** version 14 en google play
-        versionCode = 8
+        versionCode = 12
         versionName = "1.0.0"
+                ndk {
+            debugSymbolLevel 'FULL'
+        }
+        
     }
     //********************************************** comentar para Piedad/
 signingConfigs {
