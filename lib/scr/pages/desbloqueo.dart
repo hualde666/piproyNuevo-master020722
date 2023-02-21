@@ -23,7 +23,7 @@ class Desbloqueo extends StatelessWidget {
           key: _formKey,
           autovalidateMode: AutovalidateMode.always,
           child: Container(
-            // height: height <= 500 ? 100 : 150,
+            height: 550,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -37,10 +37,10 @@ class Desbloqueo extends StatelessWidget {
                       )),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Container(
-                  height: 60,
+                  height: 40,
                   child: Text('Ingrese clave:',
                       textAlign: TextAlign.left,
                       style: TextStyle(

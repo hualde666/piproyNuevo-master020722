@@ -10,6 +10,7 @@ import 'package:piproy/scr/pages/conta_grupos.dart';
 import 'package:piproy/scr/pages/contact_llamada_emergencia.dart';
 import 'package:piproy/scr/pages/contacts_por_grupo.dart';
 import 'package:piproy/scr/pages/desbloqueo.dart';
+import 'package:piproy/scr/pages/elejir_launcher.dart';
 import 'package:piproy/scr/pages/mensaje_emergencia.dart';
 
 import 'package:piproy/scr/pages/opciones_page.dart';
@@ -217,7 +218,6 @@ class ConfiguracionPage extends StatelessWidget {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Desbloqueo()));
                 // onPress();
-
               } else {
                 pref.modoConfig = !pref.modoConfig;
               }
@@ -245,6 +245,10 @@ class ConfiguracionPage extends StatelessWidget {
               onTap: () {
                 if (pref.modoConfig) {
                   salida(context);
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => ElejirLauncher()));
                 }
               }),
         ]),

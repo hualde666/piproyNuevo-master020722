@@ -20,7 +20,8 @@ class TarjetaContacto2 extends StatefulWidget {
   //**** boleana envio true el contacto tiene la opcion de enviar al menu principal */
   final bool envio;
   final bool eliminar;
-  final String tipo;
+  final String
+      tipo; //  MPA DISCADO DIRECTO; MPB WHATSAPP;  MPC  TODAS LAS OPCIONES
 
   @override
   _TarjetaContacto2 createState() => _TarjetaContacto2();
@@ -46,7 +47,7 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
     return GestureDetector(
       child: Container(
         //   color: Colors.black,
-        height: oneTap ? 420 : 150,
+        height: oneTap ? 430 : 170,
         width: double.infinity,
         margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
         child: Column(
@@ -54,7 +55,7 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
           children: [
             Container(
               //  color: Colors.pink,
-              height: 140,
+              height: 160,
               child: Stack(
                 children: [
                   Align(
@@ -64,7 +65,7 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
                   ),
                   Align(
                       alignment: AlignmentDirectional.topCenter,
-                      child: _avatar(context, widget.contacto)),
+                      child: _avatar(context, widget.contacto, widget.tipo)),
                 ],
               ),
             ),
@@ -185,18 +186,20 @@ Column botonContacto(BuildContext context, ContactoDatos contacto,
   );
 }
 
-Widget _avatar(BuildContext context, ContactoDatos contacto) {
+Widget _avatar(BuildContext context, ContactoDatos contacto, String tipo) {
   final pref = Provider.of<Preferencias>(context);
 
   return Container(
     padding: EdgeInsets.only(top: 5),
+    //  height: 90,
+    //color: Colors.amber,
     child: Container(
       decoration: BoxDecoration(
           color: pref.backgroundColor,
           borderRadius: BorderRadius.circular(100.0),
           border: Border.all(color: Theme.of(context).primaryColor)),
       child: contacto.avatar.isEmpty
-           // muestro iniciales
+          // muestro iniciales
           ? CircleAvatar(
               maxRadius: 40,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -206,7 +209,7 @@ Widget _avatar(BuildContext context, ContactoDatos contacto) {
                 style: TextStyle(
                     fontSize: 30, color: Theme.of(context).primaryColor),
               ))
-            // muestro foto
+          // muestro foto
           : CircleAvatar(
               maxRadius: 40,
               //backgroundColor: Colors.yellow,
@@ -363,54 +366,58 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
   Future<dynamic> eliminarContactoMP(BuildContext context, String tipo) {
     final String titulo = tipo.substring(3);
     return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(' $titulo',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 30,
-            )),
-        content: Text('¿Desea eliminar contacto  del menú principal?',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 25,
-            )),
-        actionsAlignment: MainAxisAlignment.spaceAround,
-        actions: [
-          Container(
-            height: 50,
-            child: ElevatedButton(
-                onPressed: () {
-                  /// elina api de pantalla
-                  Provider.of<AplicacionesProvider>(context, listen: false)
-                      .eliminarTipoMP(tipo);
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text(' $titulo',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                  )),
+              content: Text('¿Desea eliminar contacto  del menú principal?',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                  )),
+              actionsAlignment: MainAxisAlignment.spaceAround,
+              actions: [
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        /// elina api de pantalla
+                        Provider.of<AplicacionesProvider>(context,
+                                listen: false)
+                            .eliminarTipoMP(tipo);
 
-                  DbTiposAplicaciones.db
-                      .deleteApi(tipo.substring(0, 3), tipo.substring(3));
+                        DbTiposAplicaciones.db
+                            .deleteApi(tipo.substring(0, 3), tipo.substring(3));
 
-                  //elimina api de BD
+                        //elimina api de BD
 
-                  Navigator.pop(context);
-                },
-                child: Text('Si')),
-          ),
-          Container(
-            height: 50,
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('NO')),
-          ),
-        ],
-      ),
-    );
+                        Navigator.pop(context);
+                      },
+                      child: Text('Si')),
+                ),
+                Container(
+                  height: 50,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('NO')),
+                ),
+              ],
+            ));
   }
 
+  final ancho = pref.modoConfig
+      ? MediaQuery.of(context).size.width - 120
+      : MediaQuery.of(context).size.width - 20;
   return Container(
-      height: 210,
-      padding: EdgeInsets.only(top: 70),
+      height: (tipo == 'MPB' || tipo == 'MPA') ? 300 : 210,
+      padding: EdgeInsets.only(top: 85),
       decoration: BoxDecoration(
+          //color: Colors.amber,
           color: pref.backgroundColor,
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(color: Theme.of(context).primaryColor)),
@@ -433,18 +440,37 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                     ),
                   ))
               : Container(
-                  height: 30,
-                  width: 30,
-                ),
+                  // height: 30,
+                  // width: 30,
+                  ),
           Container(
-            width: MediaQuery.of(context).size.width - 120,
-            child: Text(
-              contacto.nombre,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 35.0,
-              ),
+            //color: Colors.amber,
+            width: ancho,
+            child: Column(
+              children: [
+                Text(
+                  contacto.nombre,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35.0,
+                  ),
+                ),
+                tipo == 'MPA'
+                    ? Text(
+                        'Llamar',
+                        style: TextStyle(fontSize: 20),
+                      )
+                    : tipo == 'MPB'
+                        ? Text(
+                            'Whatsapp',
+                            style: TextStyle(fontSize: 20),
+                          )
+                        : Text(
+                            '',
+                            style: TextStyle(fontSize: 20),
+                          )
+              ],
             ),
           ),
           GestureDetector(
@@ -470,9 +496,9 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                       ),
                     )
                   : Container(
-                      height: 30,
-                      width: 30,
-                    ))
+                      // height: 30,
+                      // width: 30,
+                      ))
         ],
       ));
 }

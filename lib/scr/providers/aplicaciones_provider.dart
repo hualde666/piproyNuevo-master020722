@@ -220,6 +220,14 @@ class AplicacionesProvider with ChangeNotifier {
     }
   }
 
+  obetnerLauncher() async {
+    final resp1 = await DeviceApps.getInstalledApplications(
+        includeAppIcons: true,
+        includeSystemApps: true,
+        onlyAppsWithLaunchIntent: true);
+    return resp1;
+  }
+
   obtenerListaApiGrupo(String grupo) async {
     if (grupo == 'Todas') {
       // ******* obtengo Todas las app del celular */
