@@ -42,37 +42,32 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
     final contactosProvaider = Provider.of<ContactosProvider>(context);
     final grupo = apiProvider.tipoSeleccion;
     final celProvider = Provider.of<EstadoProvider>(context, listen: false);
-
+    final pref = Provider.of<Preferencias>(context);
     bool activoDatos = celProvider.conexionDatos;
     return GestureDetector(
       child: Container(
-        //   color: Colors.black,
-        height: oneTap ? 430 : 170,
-        width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              //  color: Colors.pink,
-              height: 160,
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    child: _nombreContacto(context, widget.contacto, grupo,
-                        (widget.envio), widget.eliminar, widget.tipo),
-                  ),
-                  Align(
-                      alignment: AlignmentDirectional.topCenter,
-                      child: _avatar(context, widget.contacto, widget.tipo)),
-                ],
-              ),
-            ),
-            oneTap ? _botonesContactos(context, widget.contacto) : Container(),
-          ],
-        ),
-      ),
+          decoration: BoxDecoration(
+              color: pref.backgroundColor,
+              borderRadius: BorderRadius.circular(15.0),
+              border: Border.all(color: Theme.of(context).primaryColor)),
+          //color: Colors.black,
+          height: oneTap ? 470 : 190,
+          width: double.infinity,
+          margin: EdgeInsets.symmetric(horizontal: 5, vertical: 2.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _avatar(context, widget.contacto, grupo, (widget.envio),
+                  widget.eliminar, widget.tipo),
+              _nombreContacto(context, widget.contacto, widget.tipo),
+              oneTap
+                  ? _botonesContactos(
+                      context,
+                      widget.contacto,
+                    )
+                  : Container(),
+            ],
+          )),
       onTap: () async {
         if (widget.tipo != 'MPA' && widget.tipo != 'MPB') {
           oneTap = !oneTap;
@@ -104,6 +99,11 @@ class _TarjetaContacto2 extends State<TarjetaContacto2> {
 Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
   return Container(
       //  height: 220.0,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      // border: Border.all(color: Theme.of(context).scaffoldBackgroundColor)),
       width: 330,
       child: Column(
         children: [
@@ -166,7 +166,7 @@ Column botonContacto(BuildContext context, ContactoDatos contacto,
         margin: EdgeInsets.only(top: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(80),
-          color: pref.backgroundColor,
+          color: Theme.of(context).primaryColor,
         ),
         child: conteinerIcon(
             context,
@@ -186,43 +186,10 @@ Column botonContacto(BuildContext context, ContactoDatos contacto,
   );
 }
 
-Widget _avatar(BuildContext context, ContactoDatos contacto, String tipo) {
+Widget _avatar(BuildContext context, ContactoDatos contacto, String grupo,
+    bool envio, bool eliminar, String tipo) {
   final pref = Provider.of<Preferencias>(context);
-
-  return Container(
-    padding: EdgeInsets.only(top: 5),
-    //  height: 90,
-    //color: Colors.amber,
-    child: Container(
-      decoration: BoxDecoration(
-          color: pref.backgroundColor,
-          borderRadius: BorderRadius.circular(100.0),
-          border: Border.all(color: Theme.of(context).primaryColor)),
-      child: contacto.avatar.isEmpty
-          // muestro iniciales
-          ? CircleAvatar(
-              maxRadius: 40,
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              foregroundColor: Theme.of(context).primaryColor,
-              child: Text(
-                contacto.iniciales,
-                style: TextStyle(
-                    fontSize: 30, color: Theme.of(context).primaryColor),
-              ))
-          // muestro foto
-          : CircleAvatar(
-              maxRadius: 40,
-              //backgroundColor: Colors.yellow,
-              backgroundImage: MemoryImage(contacto.avatar),
-            ),
-    ),
-  );
-}
-
-Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
-    String grupo, bool envio, bool eliminar, String tipo) {
-  final pref = Provider.of<Preferencias>(context);
-  Future<dynamic> eliminarContactoGrupo(
+  Future<dynamic> _eliminarContactoGrupo(
           BuildContext context, String grupo, ContactoDatos contacto) =>
       showDialog(
         context: context,
@@ -293,10 +260,10 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                 grupo = 'MPA';
                 final nuevo =
                     new ApiTipos(grupo: grupo, nombre: contacto.nombre);
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu(grupo + contacto.nombre);
-
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                if (Provider.of<AplicacionesProvider>(context, listen: false)
+                    .agregarMenu(grupo + contacto.nombre)) {
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
                 Navigator.pop(context);
               },
               child: Container(
@@ -313,10 +280,12 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                 grupo = 'MPB';
                 final nuevo =
                     new ApiTipos(grupo: grupo, nombre: contacto.nombre);
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu(grupo + contacto.nombre);
 
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                if (Provider.of<AplicacionesProvider>(context, listen: false)
+                    .agregarMenu(grupo + contacto.nombre)) {
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
+
                 Navigator.pop(context);
               },
               child: Container(
@@ -332,10 +301,10 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
                 grupo = 'MPC';
                 final nuevo =
                     new ApiTipos(grupo: grupo, nombre: contacto.nombre);
-                Provider.of<AplicacionesProvider>(context, listen: false)
-                    .agregarMenu(grupo + contacto.nombre);
-
-                DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                if (Provider.of<AplicacionesProvider>(context, listen: false)
+                    .agregarMenu(grupo + contacto.nombre)) {
+                  DbTiposAplicaciones.db.nuevoTipo(nuevo);
+                }
                 Navigator.pop(context);
               },
               child: Container(
@@ -410,95 +379,117 @@ Widget _nombreContacto(BuildContext context, ContactoDatos contacto,
             ));
   }
 
-  final ancho = pref.modoConfig
-      ? MediaQuery.of(context).size.width - 120
-      : MediaQuery.of(context).size.width - 20;
   return Container(
-      height: (tipo == 'MPB' || tipo == 'MPA') ? 300 : 210,
-      padding: EdgeInsets.only(top: 85),
-      decoration: BoxDecoration(
-          //color: Colors.amber,
-          color: pref.backgroundColor,
-          borderRadius: BorderRadius.circular(15.0),
-          border: Border.all(color: Theme.of(context).primaryColor)),
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          envio && pref.modoConfig
-              ? GestureDetector(
-                  onTap: () {
-                    agregarMPA(context, contacto);
-                  },
-                  child: Container(
+    padding: EdgeInsets.only(top: 5),
+    height: 100,
+    // color: Colors.amber,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        envio
+            ? GestureDetector(
+                onTap: () {
+                  agregarMPA(context, contacto);
+                },
+                child: Container(
+                  width: 50,
+                  height: 90,
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                    color: Colors.blue,
+                  ),
+                ))
+            : Container(
+                height: 90,
+                width: 50,
+              ),
+        Container(
+          decoration: BoxDecoration(
+              color: pref.backgroundColor,
+              borderRadius: BorderRadius.circular(100.0),
+              border: Border.all(color: Theme.of(context).primaryColor)),
+          child: contacto.avatar.isEmpty
+              // muestro iniciales
+              ? CircleAvatar(
+                  maxRadius: 40,
+                  backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                  foregroundColor: Theme.of(context).primaryColor,
+                  child: Text(
+                    contacto.iniciales,
+                    style: TextStyle(
+                        fontSize: 30, color: Theme.of(context).primaryColor),
+                  ))
+              // muestro foto
+              : CircleAvatar(
+                  maxRadius: 40,
+                  //backgroundColor: Colors.yellow,
+                  backgroundImage: MemoryImage(contacto.avatar),
+                ),
+        ),
+        GestureDetector(
+            onTap: () {
+              if (envio) {
+                if (grupo != 'Todos') {
+                  _eliminarContactoGrupo(context, grupo, contacto);
+                }
+                // eliminar contacto del grupo
+              } else {
+                // eliminar contacto menu principal
+                eliminarContactoMP(context, tipo + contacto.nombre);
+              }
+            },
+            child: eliminar && pref.modoConfig
+                ? Container(
                     width: 50,
                     height: 90,
                     child: Icon(
-                      Icons.arrow_back,
+                      Icons.close,
                       size: 30,
-                      color: Colors.blue,
+                      color: Colors.red,
                     ),
+                  )
+                : Container(
+                    height: 90,
+                    width: 50,
                   ))
-              : Container(
-                  // height: 30,
-                  // width: 30,
-                  ),
-          Container(
-            //color: Colors.amber,
-            width: ancho,
-            child: Column(
-              children: [
-                Text(
-                  contacto.nombre,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 35.0,
-                  ),
-                ),
-                tipo == 'MPA'
-                    ? Text(
-                        'Llamar',
-                        style: TextStyle(fontSize: 20),
-                      )
-                    : tipo == 'MPB'
-                        ? Text(
-                            'Whatsapp',
-                            style: TextStyle(fontSize: 20),
-                          )
-                        : Text(
-                            '',
-                            style: TextStyle(fontSize: 20),
-                          )
-              ],
-            ),
+      ],
+    ),
+  );
+}
+
+Widget _nombreContacto(
+    BuildContext context, ContactoDatos contacto, String tipo) {
+  return Container(
+    //color: Colors.blue,
+    height: 80,
+    // width: ancho,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          contacto.nombre,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 35.0,
           ),
-          GestureDetector(
-              onTap: () {
-                if (envio) {
-                  if (grupo != 'Todos') {
-                    eliminarContactoGrupo(context, grupo, contacto);
-                  }
-                  // eliminar contacto del grupo
-                } else {
-                  // eliminar contacto menu principal
-                  eliminarContactoMP(context, tipo + contacto.nombre);
-                }
-              },
-              child: eliminar && pref.modoConfig
-                  ? Container(
-                      width: 50,
-                      height: 90,
-                      child: Icon(
-                        Icons.close,
-                        size: 30,
-                        color: Colors.red,
-                      ),
-                    )
-                  : Container(
-                      // height: 30,
-                      // width: 30,
-                      ))
-        ],
-      ));
+        ),
+        tipo == 'MPA'
+            ? Text(
+                'Llamar',
+                style: TextStyle(fontSize: 20),
+              )
+            : tipo == 'MPB'
+                ? Text(
+                    'Whatsapp',
+                    style: TextStyle(fontSize: 20),
+                  )
+                : Text(
+                    '',
+                    style: TextStyle(fontSize: 20),
+                  )
+      ],
+    ),
+  );
 }

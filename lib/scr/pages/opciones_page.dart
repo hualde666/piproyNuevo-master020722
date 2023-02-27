@@ -176,8 +176,8 @@ class OpcionesPage extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
               color: pref.iContactos
-                  ? Theme.of(context).backgroundColor
-                  : Theme.of(context).backgroundColor.withOpacity(0.1),
+                  ? pref.backgroundColor
+                  : pref.backgroundColor.withOpacity(0.5),
               // color:
               //     /** es un contacto o grupo de contacto */
               //     Colors.green,
@@ -185,7 +185,7 @@ class OpcionesPage extends StatelessWidget {
               border: Border.all(
                 color: pref.iContactos
                     ? Theme.of(context).primaryColor
-                    : Theme.of(context).primaryColor.withOpacity(0.1),
+                    : Theme.of(context).primaryColor.withOpacity(0.4),
               )),
           child: Center(
             child: Text(
@@ -193,7 +193,7 @@ class OpcionesPage extends StatelessWidget {
               style: TextStyle(
                 color: pref.iContactos
                     ? Theme.of(context).primaryColor
-                    : Theme.of(context).primaryColor.withOpacity(0.1),
+                    : Theme.of(context).primaryColor.withOpacity(0.4),
                 fontSize: 30,
               ),
             ),
@@ -211,24 +211,16 @@ class OpcionesPage extends StatelessWidget {
           },
           child: Container(
             height: 90,
-            // decoration: BoxDecoration(
-            //   color: pref.iAplicaciones
-            //       ? Theme.of(context).scaffoldBackgroundColor
-            //       /** es un contacto o grupo de contacto */
-
-            //       : Colors.grey,
-            // ),
-            //      child: Container(
             margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             decoration: BoxDecoration(
                 color: pref.iAplicaciones
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).backgroundColor.withOpacity(0.1),
+                    ? pref.backgroundColor
+                    : pref.backgroundColor.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(20.0),
                 border: Border.all(
                   color: pref.iAplicaciones
                       ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColor.withOpacity(0.1),
+                      : Theme.of(context).primaryColor.withOpacity(0.4),
                 )),
             child: Center(
               child: Text(
@@ -237,7 +229,7 @@ class OpcionesPage extends StatelessWidget {
                   fontSize: 30,
                   color: pref.iAplicaciones
                       ? Theme.of(context).primaryColor
-                      : Theme.of(context).primaryColor.withOpacity(0.1),
+                      : Theme.of(context).primaryColor.withOpacity(0.4),
                 ),
               ),
             ),
@@ -276,6 +268,7 @@ class IconOpcion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pref = Provider.of<Preferencias>(context);
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -285,20 +278,20 @@ class IconOpcion extends StatelessWidget {
             height: 70.0,
             decoration: BoxDecoration(
                 color: activo
-                    ? Theme.of(context).backgroundColor
-                    : Theme.of(context).backgroundColor.withOpacity(0.1),
+                    ? pref.backgroundColor
+                    : pref.backgroundColor.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(80),
                 border: Border.all(
                     color: activo
                         ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColor.withOpacity(0.2),
+                        : Theme.of(context).primaryColor.withOpacity(0.4),
                     width: 2.0)),
             child: Icon(
               iconop,
               size: 40.0,
               color: activo
                   ? Theme.of(context).primaryColor
-                  : Theme.of(context).primaryColor.withOpacity(0.1),
+                  : Theme.of(context).primaryColor.withOpacity(0.4),
             ),
           ),
           Container(

@@ -73,6 +73,8 @@ class ContactsGruposPage extends StatelessWidget {
         //     );
         //   },
         onLongPress: () {
+          /// Cambiar nombre de grupo de contacto
+          ///
           if (grupo != 'Todos' && pref.modoConfig) {
             editarTipo(context, grupo);
           }

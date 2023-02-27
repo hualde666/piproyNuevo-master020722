@@ -339,6 +339,9 @@ class AplicacionesProvider with ChangeNotifier {
         return a.toLowerCase().compareTo(b.toLowerCase());
       });
       notifyListeners();
+      return true;
+    } else {
+      return false;
     }
   }
 

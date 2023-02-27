@@ -59,25 +59,29 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <queries>
+
+<!--    esto lo comente porque creo es lo que da problemas a piedad -->
+<!--    con los permiso al instalar la vitalfon   26 02 2023-->
+
   <!-- If your app opens https URLs -->
-  <intent>
+  <!-- <intent>
     <action android:name="android.intent.action.VIEW" />
     <data android:scheme="https" />
-  </intent>
+  </intent> -->
   <!-- If your app makes calls -->
-  <intent>
+  <!-- <intent>
     <action android:name="android.intent.action.DIAL" />
     <data android:scheme="tel" />
-  </intent>
+  </intent> -->
   <!-- If your sends SMS messages -->
-  <intent>
+  <!-- <intent>
     <action android:name="android.intent.action.SENDTO" />
     <data android:scheme="smsto" />
-  </intent>
+  </intent> -->
   <!-- If your app sends emails -->
-  <intent>
+  <!-- <intent>
     <action android:name="android.intent.action.SEND" />
     <data android:mimeType="*/*" />
-  </intent>
+  </intent> -->
 </queries>
 </manifest>

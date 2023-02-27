@@ -89,7 +89,6 @@ class _ContactLlamadaEmrgenciaState extends State<ContactLlamadaEmrgencia> {
                         //         .requestFocus(new FocusNode());
                         //   },
                         //   child:
-
                       } else {
                         return Container(
                           child: Center(
@@ -162,10 +161,8 @@ class _ContactoState extends State<Contacto> {
         height: 96.0,
         decoration: BoxDecoration(
             color: widget.contactoSelec.telefono == pref.telefonoEmergencia
-                ? Theme.of(context).backgroundColor
-                : Theme.of(context)
-                    .backgroundColor
-                    .withOpacity(0.3), //Colors.grey[700],
+                ? pref.backgroundColor
+                : pref.backgroundColor.withOpacity(0.3), //Colors.grey[700],
             borderRadius: BorderRadius.circular(20.0),
             border: Border.all(color: Theme.of(context).primaryColor)),
         child: Center(
