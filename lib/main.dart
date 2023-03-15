@@ -4,9 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:piproy/scr/definicion/thema_colores.dart';
-import 'package:piproy/scr/pages/api_grupos.dart';
-
-import 'package:piproy/scr/pages/conta_grupos.dart';
 
 import 'package:piproy/scr/pages/home2_page.dart';
 import 'package:piproy/scr/pages/permisos_bienvenida.dart';
@@ -25,7 +22,10 @@ void main() async {
   final pref = new Preferencias();
   final apiMenu = new AplicacionesProvider();
   await pref.init();
-  await apiMenu.cargarCategorias();
+  if (pref.instalado) {
+    await apiMenu.cargarCategorias();
+  }
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => new Preferencias()),
@@ -69,9 +69,6 @@ class MyApp extends StatelessWidget {
 Map<String, WidgetBuilder> get rutasApp {
   return {
     'home': (_) => Home2Page(),
-    'contactos': (_) => ContactsGruposPage(),
-    'apigrupos': (_) => ApiGruposPage(),
     'instalar': (_) => BienvenidaPage(),
-    // 'ayuda': (_) => Ayuda(),
   };
 }

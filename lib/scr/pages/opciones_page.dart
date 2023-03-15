@@ -164,15 +164,7 @@ class OpcionesPage extends StatelessWidget {
         },
         child: Container(
           height: 90,
-          // decoration: BoxDecoration(
-          //   color: pref.iContactos
-          //       ? Theme.of(context).scaffoldBackgroundColor
-          //       /** es un contacto o grupo de contacto */
-
-          //       : Colors.grey,
-          // ),
-          //         child: Container(
-          //         height: 40,
+     
           margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           decoration: BoxDecoration(
               color: pref.iContactos

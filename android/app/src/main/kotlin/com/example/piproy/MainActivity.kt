@@ -1,18 +1,17 @@
 package com.piproy2.vitalfon
 
-
 import androidx.annotation.NonNull
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
-
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.BinaryMessenger
-
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import io.flutter.plugins.GeneratedPluginRegistrant
 
+
+
+
 import android.content.Context
+
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.IntentFilter
@@ -22,135 +21,121 @@ import android.os.Build.VERSION_CODES
 import android.os.Bundle
 //import android.telephony.SmsManager
 import android.Manifest
-//import android.content.pm.PackageManager
+//import android.content.pm.PermissionGroupInfo
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
-import    android.net.NetworkCapabilities
-import    android.location.LocationManager
+import android.net.NetworkCapabilities
+import android.location.LocationManager
 import android.hardware.camera2.CameraManager
 //import 	android.net.wifi.WifiNetworkSuggestion
 //import android.net.wifi.WifiManager
 //import android.net.Uri
 import    android.telephony.TelephonyManager
 //import    android.telephony.SmsManager.FinancialSmsCallback
-//import android.app.Activity
+import android.app.Activity
 import com.google.android.gms.location.*
+import androidx.core.content.ContextCompat
+import androidx.core.app.ActivityCompat
 
 class MainActivity : FlutterActivity() {
-
     private val CHANNEL = "app.piproy.channel/hualdemirene@gmail.com"
 
-
+    // private val REQUEST_PERMISSION_PHONE_STATE = 1
+    // val resultado: Boolean = verificarPermisos()
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-
+        val resultado: Boolean = verificarPermisos()
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             CHANNEL
         ).setMethodCallHandler { call, result ->
             // Note: this method is invoked on the main thread.
             // TODO
+            if (call.method == "permisos") {
+
+                var resultado1 = verificarPermisos()
+                result.success(resultado1)
+            } else
+                if (call.method == "linterna") {
+                    val prender: Boolean = (call.argument("prender") as? Boolean) ?: false
+                    var resultado2 = prendeLinterna(prender)
+                    result.success(resultado2)
+                } else
+
+                    if (call.method == "bateria") {
+
+                        val batteryLevel = getNivelBateria()
+
+                        if (batteryLevel != -1) {
+
+                            result.success(batteryLevel)
+                        } else {
+                            result.error("UNAVAILABLE", "Battery level not available.", null)
+                            println("error en bateria")
+                        }
+                    } else {
 
 
-//            if (call.method == "mandarsms") {
-//                val phone: String = (call.argument("phone") as? String) ?: ""
-//                val mensaje: String = (call.argument("mensaje") as? String) ?: ""
-//                val resultado = sendSms(phone, mensaje)
-//
-//                result.success(resultado)
-//
-//            }
-
-            if (call.method == "permisocall") {
-                val resultado: Boolean = permisoCall()
-                result.success(resultado)
-            }
-            if (call.method == "permisogeo") {
-                val resultado: Boolean = permisoGeo()
-                result.success(resultado)
-            }
-            if (call.method == "permisosms") {
-                val resultado: Boolean = permisoSms()
-                result.success(resultado)
-            }
-            if (call.method == "version") {
-                val resultado = getAndroidVersion()
-                result.success(resultado)
-
-            }
-
-            if (call.method == "wifion") {
-
-                val res: Boolean = getWifiOn()
-
-                result.success(res)
+                        var respuesta = metodo(call.method)
+                        result.success(respuesta)
 
 
-            }
-            if (call.method == "wifioncon") {
-
-                val res: Boolean = getWifiOnCon()
-
-                result.success(res)
-
-
-            }
-            if (call.method == "geolocalizacion") {
-
-                val res: Boolean = getLocalizacion()
-
-                result.success(res)
-
-
-            }
-//            if (call.method == "onoffwifi") {
-//                // val prender: Boolean= (call.argument("prender") as? Boolean) ?: false
-//                val resultado = true
-//                result.success(resultado)
-//
-//            }
-//            if (call.method == "onoffgps") {
-//                val prender: Boolean = (call.argument("prender") as? Boolean) ?: false
-//                onoffGps(prender)
-//
-//            }
-            if (call.method == "linterna") {
-                val prender: Boolean = (call.argument("prender") as? Boolean) ?: false
-                val resultado = prendeLinterna(prender)
-                result.success(resultado)
-            }
-            if (call.method == "gps") {
-                val resultado = getGps()
-                result.success(resultado)
-
-            }
-            if (call.method == "datos") {
-                val resultado = getDatos()
-                result.success(resultado)
-
-            }
-            if (call.method == "cargando") {
-                val resultado = getCargaBateria()
-                result.success(resultado)
-
-            }
-            if (call.method == "bateria") {
-
-                val batteryLevel = getNivelBateria()
-
-                if (batteryLevel != -1) {
-
-                    result.success(batteryLevel)
-                } else {
-                    result.error("UNAVAILABLE", "Battery level not available.", null)
-                    println("error en bateria")
-                }
-            }
-
+                    }
 
         }
     }
 
+    private fun metodo(proceso: String): Boolean {
+
+
+        when (proceso) {
+            "permisos" -> {
+                return verificarPermisos()
+            }
+            "permisocall" -> {
+                return permisoCall()
+            }
+            "permisogeo" -> {
+                return permisoGeo()
+            }
+            "permisosms" -> {
+                return permisoSms()
+            }
+            //   "version" -> {return verificarPermisos()}
+            "wifion" -> {
+                return getWifiOn()
+            }
+
+            "wifioncon" -> {
+                return getWifiOnCon()
+            }
+//                "linterna" -> {
+//                    return prendeLinterna(prender)
+//                }
+            "gps" -> {
+                return getGps()
+            }
+            "datos" -> {
+                return getDatos()
+            }
+
+
+            "cargando" -> {
+                return getCargaBateria()
+            }
+            else -> {
+                return false
+            }
+        }
+    }
+
+
+    private fun verificarPermisos(): Boolean {
+        println("************entreeeeee en permisos")
+
+        return true
+    }
 
     private fun getAndroidVersion(): String {
         val sdkVersion: Int
@@ -168,7 +153,8 @@ class MainActivity : FlutterActivity() {
         val batteryLevel: Int
         if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
             val batteryManager = getSystemService(Context.BATTERY_SERVICE) as BatteryManager
-            batteryLevel = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
+            batteryLevel =
+                batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
 
         } else {
             val intent = ContextWrapper(applicationContext).registerReceiver(
@@ -188,9 +174,10 @@ class MainActivity : FlutterActivity() {
 
     private fun getCargaBateria(): Boolean {
 
-        val batteryStatus: Intent? = IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
-            context.registerReceiver(null, ifilter)
-        }
+        val batteryStatus: Intent? =
+            IntentFilter(Intent.ACTION_BATTERY_CHANGED).let { ifilter ->
+                context.registerReceiver(null, ifilter)
+            }
         val status: Int = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
         val isCharging: Boolean = status == BatteryManager.BATTERY_STATUS_CHARGING
                 || status == BatteryManager.BATTERY_STATUS_FULL
@@ -241,7 +228,7 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun getWifiOnCon(): Boolean {
-
+/// esta fun es para ver si hay conexion wifi con señal
 
         val connectivityManager =
             this.getSystemService(android.content.Context.CONNECTIVITY_SERVICE)
@@ -265,26 +252,6 @@ class MainActivity : FlutterActivity() {
         }
     }
 
-//    private fun onoffWifi(): Boolean {
-//
-//
-//        //  manager.startLocalOnlyHotspot()
-//
-//        //     @Override
-//        //     public void onStopped() {
-//        //         super.onStopped();
-//        //         Log.d(TAG, "onStopped: ");
-//        //     }
-//
-//        //     @Override
-//        //     public void onFailed(int reason) {
-//        //         super.onFailed(reason);
-//        //         Log.d(TAG, "onFailed: ");
-//        //     }
-//        // }, new Handler());
-//
-//        return true
-//    }
 
     // determina si GPS esta on o off
     private fun getGps(): Boolean {
@@ -298,33 +265,6 @@ class MainActivity : FlutterActivity() {
 
     }
 
-    // prende o apaga gps... no funciona
-//    private fun onoffGps(onoff: Boolean) {
-//
-//
-//        if (onoff) { //prender
-//            val poke = Intent()
-//            poke.setClassName(
-//                "com.android.settings",
-//                "com.android.settings.widget.SettingsAppWidgetProvider"
-//            );
-//            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-//
-//            poke.setData(Uri.parse("3"));
-//            sendBroadcast(poke);
-//
-//        } else {
-//            val poke = Intent();
-//            poke.setClassName(
-//                "com.android.settings",
-//                "com.android.settings.widget.SettingsAppWidgetProvider"
-//            );
-//            poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-//            poke.setData(Uri.parse("3"));
-//            sendBroadcast(poke);
-//        }
-//
-//    }
 
     private fun getDatos(): Boolean {
         var tm =
@@ -336,7 +276,10 @@ class MainActivity : FlutterActivity() {
     }
 
     private fun prendeLinterna(prender: Boolean): Boolean {
-        var camManager: CameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager;
+
+        //  val prender: Boolean = (call.argument("prender") as? Boolean) ?: false
+        var camManager: CameraManager =
+            getSystemService(Context.CAMERA_SERVICE) as CameraManager;
         var cameraId: String =
             camManager.getCameraIdList()[0]; // usualmente la camara delantera esta en la posicion 0
         camManager.setTorchMode(cameraId, prender);
@@ -345,37 +288,6 @@ class MainActivity : FlutterActivity() {
 
     }
 
-//    private fun sendSms(phone: String, text: String): Boolean {
-//
-//
-//        val permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
-//        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-//
-//
-//            var intent = Intent()
-//            intent.action = Intent.ACTION_SENDTO // Enviar acción SMS
-//            intent.data =
-//                Uri.parse(phone) // smsto: el destinatario es el destinatario, puede cambiarlo a voluntad
-//            intent.putExtra("sms_body", text)
-//
-//            // intent.
-//            // El segundo parámetro aquí es el contenido del mensaje de texto
-//            startActivity(intent)
-//
-//            return true
-//
-//
-//        } else {
-//            ActivityCompat.requestPermissions(
-//                this, arrayOf(Manifest.permission.SEND_SMS),
-//                101
-//            )
-//            return false
-//
-//        }
-//
-//
-//    }
 
     private fun permisoCall(): Boolean {
 
@@ -409,6 +321,4 @@ class MainActivity : FlutterActivity() {
 
 
     }
-
-
 }

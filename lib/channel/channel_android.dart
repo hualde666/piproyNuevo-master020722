@@ -76,28 +76,28 @@ class AndroidChannel {
       return false;
     }
   }
-
-  Future<bool> swichWifi(bool on) async {
-    try {
-      final result = await _methodChannel.invokeMethod("onoffwifi");
-
-      return result;
-    } catch (e) {
-      //print('ERROR: $e');
-      return false;
-    }
-  }
-
-  Future<bool> swichGps(bool on) async {
-    try {
-      final result = await _methodChannel.invokeMethod("onoffgps");
-
-      return result;
-    } catch (e) {
-      // print('ERROR: $e');
-      return false;
-    }
-  }
+  //
+  // Future<bool> swichWifi(bool on) async {
+  //   try {
+  //     final result = await _methodChannel.invokeMethod("onoffwifi");
+  //
+  //     return result;
+  //   } catch (e) {
+  //     //print('ERROR: $e');
+  //     return false;
+  //   }
+  // }
+  //
+  // Future<bool> swichGps(bool on) async {
+  //   try {
+  //     final result = await _methodChannel.invokeMethod("onoffgps");
+  //
+  //     return result;
+  //   } catch (e) {
+  //     // print('ERROR: $e');
+  //     return false;
+  //   }
+  // }
 
   Future<bool> conectadoGps() async {
     try {

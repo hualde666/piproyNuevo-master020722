@@ -5,6 +5,8 @@ import 'package:piproy/scr/providers/aplicaciones_provider.dart';
 import 'package:piproy/scr/providers/db_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/api_grupos.dart';
+import '../pages/conta_grupos.dart';
 import '../providers/usuario_pref.dart';
 
 Widget elementos(BuildContext context, Widget widget, double altura,
@@ -54,8 +56,14 @@ Widget elementos(BuildContext context, Widget widget, double altura,
     ),
     onTap: () {
       if (ruta != '') {
+        // final String grupo = ruta == 'contactos'
+        //     ? 'Todos'
+        //     : ruta == 'apigrupos'
+        //         ? 'Todas'
+        //         : ruta;
         Provider.of<AplicacionesProvider>(context, listen: false)
             .tipoSeleccion = ruta;
+
         if (tipo.contains('MPF')) {
           //**** grupo de apps */
           Navigator.push(context,
@@ -70,7 +78,13 @@ Widget elementos(BuildContext context, Widget widget, double altura,
                     builder: (context) => ContactsPorGrupoPage()));
             // Navigator.pushNamed(context, 'grupocontacto');
           } else {
-            Navigator.pushNamed(context, ruta);
+            ruta == 'contactos'
+                ? Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ContactsGruposPage()))
+                : Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ApiGruposPage()));
           }
         }
       }

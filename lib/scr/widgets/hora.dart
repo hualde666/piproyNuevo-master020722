@@ -13,9 +13,8 @@ class HoraFecha extends StatefulWidget {
 
 class _HoraFechaState extends State<HoraFecha> {
   Timer startTimeout([int milliseconds]) {
-    final timeout = Duration(seconds: 2);
-    //final ms = Duration(milliseconds: 1000);
-    //var duration = milliseconds == null ? timeout : ms * milliseconds;
+    final timeout = Duration(seconds:60);
+
     return Timer(timeout, _actualizaHora);
   }
 
@@ -64,21 +63,13 @@ class HoraReloj extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Text('${reloj.dias[reloj.diaweek - 1]}',
-          //     style:
-          //         TextStyle(fontSize: 30, color: Theme.of(context).primaryColor
-          //             //fontWeight: FontWeight.bold,
-          //             )),
+
           Text('${reloj.shora}:${reloj.sminutos}',
               style:
                   TextStyle(fontSize: 50, color: Theme.of(context).primaryColor
                       // fontWeight: FontWeight.bold,
                       )),
-          // Text(
-          //   '${reloj.dia} ${reloj.meses[reloj.mes - 1]} ',
-          //   style:
-          //       TextStyle(fontSize: 25, color: Theme.of(context).primaryColor),
-          // ),
+
         ],
       ),
     );
