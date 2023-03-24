@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:piproy/scr/widgets/boton_rojo_dibujo.dart';
 import 'package:piproy/scr/widgets/encabezado_icon.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/usuario_pref.dart';
 
 class AyudaHome extends StatelessWidget {
   @override
@@ -20,6 +23,7 @@ class AyudaHome extends StatelessWidget {
   }
 
   List<Widget> _crearListaAyuda(BuildContext context) {
+    final pref = Provider.of<Preferencias>(context);
     List<Widget> lista = [
       SizedBox(
         height: 10,
@@ -176,73 +180,6 @@ class AyudaHome extends StatelessWidget {
         height: 10,
       ),
 
-      // Container(
-      //   // height: 150,
-      //   margin: EdgeInsets.only(left: 5),
-      //   child: Column(
-      //     children: [
-      //       Container(
-      //           margin: EdgeInsets.symmetric(horizontal: 130),
-      //           child: widgetHorizontal(context, Icons.battery_std, 'bateria')),
-      //       Container(
-      //         width: double.infinity,
-      //         margin: EdgeInsets.only(left: 6, right: 6, top: 3),
-      //         child: Text(
-      //           'Indicador del nivel de carga de la batería. En amarillo carga menor al 50% y rojo carga menor del 20%',
-      //           textAlign: TextAlign.justify,
-      //           style: TextStyle(
-      //               fontSize: 25, color: Theme.of(context).primaryColor),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-      // Divider(
-      //   height: 10,
-      //   color: Theme.of(context).primaryColor,
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-
-      // Container(
-      //   // height: 150,
-      //   margin: EdgeInsets.only(left: 5),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     // mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Container(
-      //         margin: EdgeInsets.symmetric(horizontal: 130),
-      //         child: widgetHorizontal(
-      //           context,
-      //           Icons.wifi,
-      //           'wifi',
-      //         ),
-      //       ),
-      //       Container(
-      //         width: double.infinity,
-      //         margin: EdgeInsets.only(left: 6, right: 6, top: 3),
-      //         child: Text(
-      //           'Indica si el celular tiene activa la señal Wifi. Rojo si no lo está.',
-      //           textAlign: TextAlign.justify,
-      //           style: TextStyle(
-      //               fontSize: 25, color: Theme.of(context).primaryColor),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-      // Divider(
-      //   height: 10,
-      //   color: Theme.of(context).primaryColor,
-      // ),
       SizedBox(
         height: 10,
       ),
@@ -317,82 +254,6 @@ class AyudaHome extends StatelessWidget {
       SizedBox(
         height: 10,
       ),
-
-      // Container(
-      //   // height: 150,
-      //   margin: EdgeInsets.only(left: 5),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     // mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Container(
-      //         child: widgetHorizontal(
-      //           context,
-      //           Icons.signal_cellular_alt_rounded,
-      //           'linea',
-      //         ),
-      //       ),
-      //       Container(
-      //         width: double.infinity,
-      //         margin: EdgeInsets.only(left: 6, right: 6, top: 3),
-      //         child: Text(
-      //           'Indica si tiene linea telefónica. En rojo no la tiene.',
-      //           textAlign: TextAlign.justify,
-      //           style: TextStyle(
-      //               fontSize: 25, color: Theme.of(context).primaryColor),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-      // Divider(
-      //   height: 10,
-      //   color: Theme.of(context).primaryColor,
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-
-      // Container(
-      //   // height: 150,
-      //   margin: EdgeInsets.only(left: 5),
-      //   child: Column(
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     // mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       Container(
-      //         child: widgetHorizontal(
-      //           context,
-      //           Icons.gps_fixed_rounded,
-      //           'gps',
-      //         ),
-      //       ),
-      //       Container(
-      //         width: double.infinity,
-      //         margin: EdgeInsets.only(left: 6, right: 6, top: 3),
-      //         child: Text(
-      //           'Indica si GPS está activo. En rojo no está activo.',
-      //           textAlign: TextAlign.justify,
-      //           style: TextStyle(
-      //               fontSize: 25, color: Theme.of(context).primaryColor),
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
-      // Divider(
-      //   height: 10,
-      //   color: Theme.of(context).primaryColor,
-      // ),
-      // SizedBox(
-      //   height: 10,
-      // ),
 
       Container(
         // height: 150,
@@ -573,7 +434,9 @@ class AyudaHome extends StatelessWidget {
                 child: Text(
                   'Contactos',
                   style: TextStyle(
-                      fontSize: 30, color: Theme.of(context).backgroundColor),
+                    fontSize: 30,
+                    color: pref.backgroundColor,
+                  ),
                 ),
               ),
             ),
@@ -614,7 +477,7 @@ class AyudaHome extends StatelessWidget {
               decoration: BoxDecoration(
                   color:
                       /** es un contacto o grupo de contacto */
-                      Theme.of(context).backgroundColor,
+                      pref.backgroundColor,
                   borderRadius: BorderRadius.circular(20.0),
                   border: Border.all(
                     color: Theme.of(context).primaryColor,

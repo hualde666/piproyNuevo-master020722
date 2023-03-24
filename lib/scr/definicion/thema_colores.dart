@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 ThemeData themaApi(String color) {
-  //final celProvider = Provider.of<EstadoProvider>(context);
-  //final color = "1"; // celProvider.paleta;
-  Color backgroundColor;
   ThemeData tema;
   switch (color) {
     case '1':

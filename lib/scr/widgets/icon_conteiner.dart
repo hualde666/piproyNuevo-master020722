@@ -19,7 +19,8 @@ import '../providers/usuario_pref.dart';
 
 Widget conteinerIcon(BuildContext context, Icon icon, String tarea,
     ContactoDatos contacto, double ancho) {
-  final celProvider = Provider.of<EstadoProvider>(context);
+  final celProvider =
+      new EstadoProvider(); //Provider.of<EstadoProvider>(context);
   final pref = Provider.of<Preferencias>(context);
   bool activoGps = celProvider.conexionGps;
   bool activoDatos = celProvider.conexionDatos;
@@ -298,10 +299,9 @@ class _PilaState extends State<Pila> {
   @override
   Widget build(BuildContext context) {
     final celProvider = Provider.of<EstadoProvider>(context);
+    final pref = Provider.of<Preferencias>(context);
     nivelBateria = celProvider.nivelBateria;
-    color = nivelBateria > 49
-        ? Theme.of(context).backgroundColor
-        : celProvider.bateriaColor;
+    color = nivelBateria > 49 ? pref.backgroundColor : celProvider.bateriaColor;
     cargando = celProvider.cargandoBateria;
 
     return Center(

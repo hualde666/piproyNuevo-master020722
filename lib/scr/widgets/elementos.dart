@@ -56,11 +56,6 @@ Widget elementos(BuildContext context, Widget widget, double altura,
     ),
     onTap: () {
       if (ruta != '') {
-        // final String grupo = ruta == 'contactos'
-        //     ? 'Todos'
-        //     : ruta == 'apigrupos'
-        //         ? 'Todas'
-        //         : ruta;
         Provider.of<AplicacionesProvider>(context, listen: false)
             .tipoSeleccion = ruta;
 
@@ -68,7 +63,6 @@ Widget elementos(BuildContext context, Widget widget, double altura,
           //**** grupo de apps */
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ApiPorGrupoPage()));
-          // Navigator.pushNamed(context, 'grupo');
         } else {
           if (tipo.contains('MPE')) {
             //**** grupo de contacto */

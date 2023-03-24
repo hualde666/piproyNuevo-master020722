@@ -39,38 +39,23 @@ class BienvenidaPage extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Text(
-                        '    Mantén conectados a tus mayores o a cualquier persona con limitaciones visuales o digitales. No mas miedo al teléfono móvil o celular.',
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 155, 185, 182)),
+                      TextoBienvenida(
+                        texto:
+                            '    Mantén conectados a tus mayores o a cualquier persona con limitaciones visuales o digitales. No mas miedo al teléfono móvil o celular.',
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        '    El usuario podrá enviar mensajes de emergencia indicando su localización.',
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 155, 185, 182)),
+                      TextoBienvenida(
+                        texto:
+                            '    El usuario podrá enviar mensajes de emergencia indicando su localización.',
                       ),
                       SizedBox(
                         height: 10,
                       ),
-                      Text(
-                        '    A continuación vitalfon necesita autorización para acceder a varias opciones del teléfono cuando esté en uso el app. Estos permisos son indispensables para que vitalfon facilite el uso del teléfono.		',
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 155, 185, 182)),
+                      TextoBienvenida(
+                        texto:
+                            '    A continuación vitalfon necesita autorización para acceder a varias opciones del teléfono cuando esté en uso el app. Estos permisos son indispensables para que vitalfon facilite el uso del teléfono.		',
                       ),
                     ],
                   ),
@@ -102,5 +87,26 @@ class BienvenidaPage extends StatelessWidget {
         ),
       )),
     ));
+  }
+}
+
+class TextoBienvenida extends StatelessWidget {
+  final String texto;
+  const TextoBienvenida({
+    Key key,
+    this.texto,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      texto,
+      textAlign: TextAlign.justify,
+      style: TextStyle(
+          fontStyle: FontStyle.italic,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 155, 185, 182)),
+    );
   }
 }

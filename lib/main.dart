@@ -20,9 +20,10 @@ import 'package:piproy/scr/providers/db_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final pref = new Preferencias();
-  final apiMenu = new AplicacionesProvider();
+
   await pref.init();
   if (pref.instalado) {
+    final apiMenu = new AplicacionesProvider();
     await apiMenu.cargarCategorias();
   }
 
@@ -49,13 +50,13 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (BuildContext context, Widget child) {
-        final MediaQueryData data = MediaQuery.of(context);
-        return MediaQuery(
-          data: data.copyWith(textScaleFactor: 1),
-          child: child,
-        );
-      },
+      // builder: (BuildContext context, Widget child) {
+      //   final MediaQueryData data = MediaQuery.of(context);
+      //   return MediaQuery(
+      //     data: data.copyWith(textScaleFactor: 1),
+      //     child: child,
+      //   );
+      // },
       title: 'vitalfon',
       theme: themaApi(pref.paleta),
 

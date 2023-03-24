@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:piproy/channel/channel_android.dart';
+
 import 'package:piproy/scr/pages/configuracion_page.dart';
 import 'package:piproy/scr/providers/aplicaciones_provider.dart';
 import 'package:provider/provider.dart';
-//import 'package:piproy/scr/pages/permisos_politicas_privasidad_page.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 import '../providers/usuario_pref.dart';
 import '../widgets/logo_header.dart';
@@ -63,7 +63,7 @@ class _LLamadasPermisosState extends State<LLamadasPermisos> {
                               width: 170,
                               child: ElevatedButton(
                                   onPressed: () async {
-                                    await Permission.phone .request();
+                                    await Permission.phone.request();
                                     // AndroidChannel _androidChannel =
                                     //     AndroidChannel();
                                     // // await FlutterPhoneDirectCaller.callNumber('');

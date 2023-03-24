@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/usuario_pref.dart';
 
 class AyudaContactosPorGrupos extends StatelessWidget {
   @override
@@ -17,6 +20,7 @@ class AyudaContactosPorGrupos extends StatelessWidget {
   }
 
   List<Widget> _crearListaAyuda(BuildContext context) {
+    final pref = Provider.of<Preferencias>(context);
     List<Widget> lista = [];
     //  lista.addAll(ayudaEncabezado(context, 'Contactos por grupo'));
     List<Widget> lista2 = [
@@ -152,7 +156,7 @@ class AyudaContactosPorGrupos extends StatelessWidget {
       Container(
         margin: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
+            color: pref.backgroundColor,
             /** es un contacto o grupo de contacto */
             // Theme.of(context).backgroundColor,
             borderRadius: BorderRadius.circular(20.0),

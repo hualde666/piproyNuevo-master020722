@@ -26,8 +26,6 @@ import 'package:piproy/scr/widgets/hora.dart';
 import 'package:provider/provider.dart';
 
 class Home2Page extends StatefulWidget {
-  //final contactosProvider = new ContactosProvider();
-
   @override
   State<Home2Page> createState() => _Home2PageState();
 }
@@ -40,6 +38,7 @@ class _Home2PageState extends State<Home2Page> {
   @override
   Widget build(BuildContext context) {
     final pref = Provider.of<Preferencias>(context);
+
     double width = MediaQuery.of(context).size.width;
 
     double altoConMenuHorizontal = 275;
@@ -330,7 +329,6 @@ listaContactosWhatsapp(BuildContext context, List<String> listaMenu) async {
 encabezadoApp(BuildContext context) {
   final pref = Provider.of<Preferencias>(context);
   final menuHorizontal = pref.menuHorizontal;
-  final double altura = MediaQuery.of(context).size.height;
 
   return Container(
     height: pref.menuHorizontal ? 276 : 200,
@@ -357,20 +355,7 @@ class BotonesEncabezado extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     final pref = Provider.of<Preferencias>(context);
     final celProvider = Provider.of<EstadoProvider>(context);
-    const IconData signal_wifi_statusbar_connected_no_internet_4_rounded =
-        IconData(0xf018a, fontFamily: 'MaterialIcons');
 
-    //double height = MediaQuery.of(context).size.height;
-    // double anchoConfig = 50;
-    // double iconConfig = 30;
-    // double anchoContainer = 100;
-    // double altoContainer = 90;
-    // if (width <= 320) {
-    //   anchoConfig = 40;
-    //   iconConfig = 20;
-    //   anchoContainer = 80;
-    //   altoContainer = 70;
-    // }
     return Container(
       child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

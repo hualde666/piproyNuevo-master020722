@@ -157,7 +157,6 @@ Widget _botonesContactos(BuildContext context, ContactoDatos contacto) {
 
 Column botonContacto(BuildContext context, ContactoDatos contacto,
     String accion, String texto, IconData icon) {
-  final pref = Provider.of<Preferencias>(context);
   return Column(
     children: [
       Container(
