@@ -19,8 +19,7 @@ import '../providers/usuario_pref.dart';
 
 Widget conteinerIcon(BuildContext context, Icon icon, String tarea,
     ContactoDatos contacto, double ancho) {
-  final celProvider =
-      new EstadoProvider(); //Provider.of<EstadoProvider>(context);
+  final celProvider = Provider.of<EstadoProvider>(context);
   final pref = Provider.of<Preferencias>(context);
   bool activoGps = celProvider.conexionGps;
   bool activoDatos = celProvider.conexionDatos;
@@ -175,15 +174,16 @@ funcionIcon(BuildContext context, String tarea, ContactoDatos contacto,
     case 'linterna':
       AndroidChannel _androidChannel = AndroidChannel();
 
-      if (prendida) {
-        Provider.of<EstadoProvider>(context, listen: false).swichLinterna =
-            false;
-        _androidChannel.onoffLinterna(false);
-      } else {
-        Provider.of<EstadoProvider>(context, listen: false).swichLinterna =
-            true;
-        _androidChannel.onoffLinterna(true);
-      }
+      // if (prendida) {
+
+      _androidChannel.onoffLinterna(!prendida);
+      Provider.of<EstadoProvider>(context, listen: false).swichLinterna =
+          !prendida;
+      // } else {
+      //   Provider.of<EstadoProvider>(context, listen: false).swichLinterna =
+      //       true;
+      //   _androidChannel.onoffLinterna(true);
+      // }
 
       break;
     case 'whatsapp':

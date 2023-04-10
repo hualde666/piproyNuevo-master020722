@@ -36,6 +36,12 @@ class _Home2PageState extends State<Home2Page> {
   Application api;
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final pref = Provider.of<Preferencias>(context);
 
@@ -90,6 +96,7 @@ class _Home2PageState extends State<Home2Page> {
 
     final pref = Provider.of<Preferencias>(context);
     final listaMenu = apiProvider.listaMenu;
+    await apiProvider.cargarCategorias();
     List<Widget> listaOpciones = [];
     if (pref.iGoogle) {
       final apiGoogle = await apiProvider
@@ -362,7 +369,7 @@ class BotonesEncabezado extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              //color: Colors.yellow,
+              //   color: Colors.yellow,
               child: Column(
                 children: [
                   Container(
@@ -381,9 +388,12 @@ class BotonesEncabezado extends StatelessWidget {
             ),
             Container(
               //    color: Colors.pink,
+              width: width / 2,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    width: 200,
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

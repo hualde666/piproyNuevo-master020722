@@ -51,7 +51,7 @@ android {
        // 4 01 2022 minSdkVersion 21
        // 4 01 2022 targetSdkVersion 30
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 33
         //*** version 17 en google play
         versionCode = 17
         versionName = "1.0.0"

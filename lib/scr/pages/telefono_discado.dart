@@ -24,6 +24,10 @@ class _DiscadoState extends State<Discado> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width / 3;
     double height = (MediaQuery.of(context).size.height - 290) / 6;
+    print(width * 3);
+
+    print(height * 6);
+
     if (MediaQuery.of(context).size.height <= 480) {
       height = 50;
     }

@@ -13,7 +13,7 @@ Widget tresBotonesHeader(
     padding: EdgeInsets.only(top: 5, left: 5, right: 5),
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         botonHomeHeader(context, pagina),
         rojo ? botonRojoHeader(context, rojo) : Container(),

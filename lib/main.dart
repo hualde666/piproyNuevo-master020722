@@ -22,10 +22,10 @@ void main() async {
   final pref = new Preferencias();
 
   await pref.init();
-  if (pref.instalado) {
-    final apiMenu = new AplicacionesProvider();
-    await apiMenu.cargarCategorias();
-  }
+  // if (pref.instalado) {
+  //   final apiMenu = new AplicacionesProvider();
+  //   await apiMenu.cargarCategorias();
+  // }
 
   runApp(MultiProvider(
     providers: [
@@ -50,13 +50,13 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // builder: (BuildContext context, Widget child) {
-      //   final MediaQueryData data = MediaQuery.of(context);
-      //   return MediaQuery(
-      //     data: data.copyWith(textScaleFactor: 1),
-      //     child: child,
-      //   );
-      // },
+      builder: (BuildContext context, Widget child) {
+        final MediaQueryData data = MediaQuery.of(context);
+        return MediaQuery(
+          data: data.copyWith(textScaleFactor: 1),
+          child: child,
+        );
+      },
       title: 'vitalfon',
       theme: themaApi(pref.paleta),
 
